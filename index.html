@@ -20,40 +20,20 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #121212;
             color: white;
             min-height: 100vh;
-            padding: 20px 20px 80px 20px;
+            padding: 20px;
+            line-height: 1.4;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            color: #ffd200;
-            text-shadow: 0 2px 10px rgba(255, 210, 0, 0.3);
-        }
-
-        .header p {
-            color: #ccc;
-            font-size: 1.1rem;
-        }
-
-        /* Стили для страниц */
+        /* СТРАНИЦЫ */
         .page {
             display: none;
             animation: fadeIn 0.3s ease-in-out;
@@ -68,382 +48,252 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Стили карточек */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* ШАПКИ */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
             margin-bottom: 30px;
         }
 
-        .card {
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ffd200;
+        }
+
+        .header p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* КНОПКИ И ИКОНКИ */
+        .button-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .big-button {
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 2px solid #333;
             border-radius: 20px;
             padding: 25px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid #333;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd200, #007bff);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            border-color: #ffd200;
-        }
-
-        .card-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 15px;
+        }
+
+        .big-button:hover {
+            transform: translateY(-2px);
+            border-color: #ffd200;
+            box-shadow: 0 8px 25px rgba(255, 210, 0, 0.2);
+        }
+
+        .big-button .icon {
             font-size: 2rem;
-            flex-shrink: 0;
+        }
+
+        /* ИКОНОЧНЫЕ КНОПКИ */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .icon-button {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 25px 15px;
+            color: white;
+            cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1);
-        }
-
-        .card-text {
-            flex: 1;
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: white;
-        }
-
-        .card-description {
-            color: #aaa;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #007bff;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        /* Цвета иконок */
-        .icon-call { background: linear-gradient(135deg, #28a745, #20c997); }
-        .icon-sms { background: linear-gradient(135deg, #17a2b8, #6f42c1); }
-        .icon-wa { background: linear-gradient(135deg, #25d366, #128c7e); }
-        .icon-tg { background: linear-gradient(135deg, #0088cc, #005999); }
-        .icon-rules { background: linear-gradient(135deg, #ffc107, #fd7e14); }
-        .icon-firstaid { background: linear-gradient(135deg, #dc3545, #e83e8c); }
-
-        /* НИЖНИЙ ТУЛБАР */
-        .bottom-toolbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #1a1a1a;
-            border-top: 2px solid #333;
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .toolbar-button {
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            background: none;
-            border: none;
-            color: #888;
+            gap: 10px;
+        }
+
+        .icon-button:hover {
+            transform: translateY(-2px);
+            border-color: #007bff;
+        }
+
+        .icon-button .icon {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .icon-button .text {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
+        .scroll-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            margin-bottom: 30px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-item {
+            flex: 0 0 auto;
+            width: 140px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
             cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            flex: 1;
-            max-width: 120px;
-        }
-
-        .toolbar-button.active {
-            color: #ffd200;
-            background: rgba(255, 210, 0, 0.1);
-        }
-
-        .toolbar-button:hover {
-            color: #ffd200;
-            background: rgba(255, 210, 0, 0.05);
-        }
-
-        .toolbar-icon {
-            font-size: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        .toolbar-button.active .toolbar-icon {
-            transform: scale(1.1);
+        .scroll-item:hover {
+            border-color: #28a745;
         }
 
-        .toolbar-label {
+        .scroll-item .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .scroll-item .text {
             font-size: 0.8rem;
             font-weight: 500;
         }
 
-        /* ФОРМА С ШАГАМИ */
-        .form-container {
-            display: none;
-            background: white;
-            color: #333;
-            padding: 25px;
-            border-radius: 20px;
-            margin-top: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        /* КРУГЛЫЕ ИКОНКИ */
+        .circle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .step {
-            display: none;
+        .circle-button {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 2px solid #333;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .circle-button:hover {
+            transform: scale(1.05);
+            border-color: #dc3545;
+        }
+
+        .circle-button .icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .circle-button .text {
+            font-size: 0.7rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* ПОЛЯ ВВОДА */
+        .input-group {
             margin-bottom: 25px;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 5px solid #007bff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .step.active {
+        .input-label {
             display: block;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .step-label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 12px;
-            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #ffd200;
             font-size: 1.1rem;
         }
 
-        .step-select, .step-input, .step-textarea {
+        .text-input, .textarea-input {
             width: 100%;
+            background: #2a2a2a;
+            border: 2px solid #333;
+            border-radius: 12px;
             padding: 15px;
-            margin: 10px 0 20px;
-            border-radius: 12px;
-            border: 2px solid #e9ecef;
-            font-size: 16px;
-            transition: all 0.3s;
-            box-sizing: border-box;
-            min-height: 50px;
+            color: white;
+            font-size: 1rem;
             resize: vertical;
-            background: white;
         }
 
-        .step-select:focus, .step-input:focus, .step-textarea:focus {
-            border-color: #ffd200;
+        .textarea-input {
+            min-height: 120px;
+        }
+
+        .text-input:focus, .textarea-input:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 210, 0, 0.1);
+            border-color: #ffd200;
         }
 
-        .step-button {
-            padding: 16px 32px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: all 0.3s;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        .step-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,123,255,0.3);
-        }
-
-        .step-button.back {
-            background: linear-gradient(135deg, #6c757d, #495057);
-            margin-right: 10px;
-            width: auto;
-            flex: 1;
-        }
-
-        .step-button.next {
-            background: linear-gradient(135deg, #28a745, #20c997);
-            width: auto;
-            flex: 2;
-        }
-
-        .step-button.send {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-        }
-
-        .button-group {
+        /* КНОПКИ НАВИГАЦИИ */
+        .nav-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .group-checkbox {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .checkbox-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 20px;
-            background: white;
-            border-radius: 12px;
-            border: 2px solid #e9ecef;
-            cursor: pointer;
-            font-weight: normal;
-            transition: all 0.3s;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .checkbox-item:hover {
-            border-color: #007bff;
-            background: #f8f9ff;
-        }
-
-        .checkbox-item input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            margin: 0;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .back-button {
-            margin: 25px auto;
-            background: linear-gradient(135deg, #6c757d, #495057);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            width: 100%;
-            transition: all 0.3s;
-            box-sizing: border-box;
-            display: none;
-        }
-
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(108,117,125,0.3);
-        }
-
-        .install-prompt {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            color: black;
-            padding: 20px 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.3);
-            display: none;
-            z-index: 1001;
-            max-width: 400px;
-            text-align: center;
-            border: 2px solid #ffd200;
-        }
-
-        .install-prompt button {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            margin: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .install-prompt button:hover {
-            transform: translateY(-2px);
-        }
-
-        .install-prompt button:last-child {
-            background: #6c757d;
-        }
-
-        .instructions {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            padding: 25px;
-            border-radius: 15px;
+            gap: 15px;
             margin-top: 30px;
-            font-size: 14px;
-            line-height: 1.6;
-            border: 1px solid #333;
         }
 
-        .instructions h3 {
-            color: #ffd200;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+        .nav-button {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .instructions p {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .nav-button.back {
+            background: #6c757d;
+            color: white;
         }
 
+        .nav-button.next {
+            background: #28a745;
+            color: white;
+        }
+
+        .nav-button.send {
+            background: #dc3545;
+            color: white;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ПРОГРЕСС БАР */
         .progress-bar {
-            display: none;
             width: 100%;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
-            margin-bottom: 25px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            margin: 20px 0;
             overflow: hidden;
         }
 
@@ -452,336 +302,357 @@
             background: linear-gradient(90deg, #007bff, #00b3ff);
             width: 0%;
             transition: width 0.4s ease;
-            border-radius: 4px;
         }
 
-        .step-indicator {
+        .step-info {
             text-align: center;
-            margin-bottom: 20px;
-            color: #666;
+            color: #ccc;
             font-size: 0.9rem;
+            margin-bottom: 10px;
         }
 
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+        /* PWA УСТАНОВКА */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            color: black;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .install-prompt button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
             }
             
-            .card {
-                padding: 20px;
+            .header {
+                padding: 20px 15px;
+                margin-bottom: 20px;
             }
             
-            .card-content {
-                gap: 15px;
-            }
-            
-            .card-icon {
-                width: 60px;
-                height: 60px;
+            .header h1 {
                 font-size: 1.7rem;
             }
-
-            .bottom-toolbar {
-                padding: 10px 15px;
+            
+            .icon-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
-
-            .toolbar-button {
-                padding: 6px 12px;
+            
+            .circle-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
-
-            .toolbar-icon {
-                font-size: 1.3rem;
+            
+            .circle-button {
+                width: 90px;
+                height: 90px;
             }
-
-            .toolbar-label {
-                font-size: 0.75rem;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .step-button.back,
-            .step-button.next {
-                width: 100%;
+            
+            .big-button {
+                padding: 20px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Окно установки приложения -->
+    <!-- Окно установки PWA -->
     <div class="install-prompt" id="installPrompt">
-        <p><strong>🎯 Установите приложение ПБОТОС</strong></p>
+        <p><strong>Установите приложение ПБОТОС</strong></p>
         <p>Для быстрого доступа с домашнего экрана</p>
-        <button onclick="installApp()">✅ Установить</button>
-        <button onclick="dismissPrompt()">❌ Позже</button>
+        <button onclick="installApp()">Установить</button>
+        <button onclick="dismissPrompt()">Позже</button>
     </div>
 
     <div class="container">
-        <div class="header">
-            <h1>🚨 ПБОТОС</h1>
-            <p>Система оперативного сообщения о нарушениях безопасности</p>
-        </div>
-
-        <!-- СТРАНИЦА 1: Сообщения -->
-        <div id="pageMessages" class="page active">
-            <div class="cards-grid">
-                <!-- Звонок -->
-                <div class="card" onclick="makeCall()">
-                    <div class="card-content">
-                        <div class="card-icon icon-call">📞</div>
-                        <div class="card-text">
-                            <div class="card-title">Позвонить дежурному</div>
-                            <div class="card-description">Непосредственная связь с сотрудником ПБОТОС по номеру +7 (937) 180-90-21</div>
-                        </div>
-                    </div>
-                    <div class="card-badge">БЫСТРЫЙ ВЫЗОВ</div>
-                </div>
-
-                <!-- SMS -->
-                <div class="card" onclick="startSteps('sms')">
-                    <div class="card-content">
-                        <div class="card-icon icon-sms">💬</div>
-                        <div class="card-text">
-                            <div class="card-title">SMS сообщение</div>
-                            <div class="card-description">Заполните форму и отправьте текстовое сообщение дежурному сотруднику</div>
-                        </div>
-                    </div>
-                    <div class="card-badge">ФОРМА</div>
-                </div>
-
-                <!-- WhatsApp -->
-                <div class="card" onclick="startSteps('wa')">
-                    <div class="card-content">
-                        <div class="card-icon icon-wa">💚</div>
-                        <div class="card-text">
-                            <div class="card-title">WhatsApp</div>
-                            <div class="card-description">Отправьте сообщение через мессенджер WhatsApp с заполненной формой</div>
-                        </div>
-                    </div>
-                    <div class="card-badge">МЕССЕНДЖЕР</div>
-                </div>
-
-                <!-- Telegram -->
-                <div class="card" onclick="startSteps('tg')">
-                    <div class="card-content">
-                        <div class="card-icon icon-tg">✈️</div>
-                        <div class="card-text">
-                            <div class="card-title">Telegram</div>
-                            <div class="card-description">Напишите в Telegram с автоматически заполненной формой нарушения</div>
-                        </div>
-                    </div>
-                    <div class="card-badge">МЕССЕНДЖЕР</div>
-                </div>
+        <!-- СТРАНИЦА 1: ПРИВЕТСТВИЕ -->
+        <div id="pageWelcome" class="page active">
+            <div class="header">
+                <h1>🚨 ПБОТОС</h1>
+                <p>Система оперативного сообщения о нарушениях безопасности</p>
             </div>
-
-            <div class="instructions">
-                <h3>📱 Как установить приложение на устройство:</h3>
-                <p><strong>Android (Chrome):</strong> Меню → "Добавить на главный экран"</p>
-                <p><strong>iPhone (Safari):</strong> Поделиться → "На экран «Домой»"</p>
-                <p><strong>Компьютер:</strong> В адресной строке нажмите значок 📥</p>
+            
+            <div class="button-grid">
+                <button class="big-button" onclick="showPage('pageReport')">
+                    <span class="icon">📝</span>
+                    НАЧАТЬ
+                </button>
             </div>
         </div>
 
-        <!-- СТРАНИЦА 2: Памятки -->
-        <div id="pageReferences" class="page">
-            <div class="cards-grid">
-                <!-- Золотые правила -->
-                <div class="card" onclick="openRules()">
-                    <div class="card-content">
-                        <div class="card-icon icon-rules">📚</div>
-                        <div class="card-text">
-                            <div class="card-title">Золотые правила безопасности</div>
-                            <div class="card-description">Основные правила и требования промышленной безопасности. Обязательны к изучению</div>
-                        </div>
-                    </div>
-                    <div class="card-badge">ОБЯЗАТЕЛЬНО</div>
-                </div>
-
-                <!-- Первая помощь -->
-                <div class="card" onclick="openFirstAid()">
-                    <div class="card-content">
-                        <div class="card-icon icon-firstaid">🏥</div>
-                        <div class="card-text">
-                            <div class="card-title">Первая помощь</div>
-                            <div class="card-description">Алгоритмы действий при несчастных случаях. Медицинская помощь до приезда врачей</div>
-                        </div>
-                    </div>
-                    <div class="card-badge">ЭКСТРЕННО</div>
-                </div>
+        <!-- СТРАНИЦА 2: ВЫБОР СПОСОБА СООБЩЕНИЯ -->
+        <div id="pageReport" class="page">
+            <div class="header">
+                <h1>Сообщить о нарушении</h1>
+                <p>Выберите способ связи</p>
             </div>
-
-            <div class="instructions">
-                <h3>📖 Информационные материалы:</h3>
-                <p>Все памятки содержат актуальную информацию согласно требованиям ПБОТОС</p>
-                <p>Регулярно обновляются в соответствии с изменениями в законодательстве</p>
+            
+            <div class="icon-grid">
+                <div class="icon-button" onclick="makeCall()">
+                    <span class="icon">📞</span>
+                    <span class="text">Позвонить</span>
+                </div>
+                
+                <div class="icon-button" onclick="startSteps('sms')">
+                    <span class="icon">💬</span>
+                    <span class="text">SMS</span>
+                </div>
+                
+                <div class="icon-button" onclick="startSteps('wa')">
+                    <span class="icon">💚</span>
+                    <span class="text">WhatsApp</span>
+                </div>
+                
+                <div class="icon-button" onclick="startSteps('tg')">
+                    <span class="icon">✈️</span>
+                    <span class="text">Telegram</span>
+                </div>
             </div>
         </div>
 
-        <!-- ФОРМА С ШАГАМИ -->
-        <div class="form-container" id="stepsContainer">
-            <div class="progress-bar" id="progressBar">
-                <div class="progress" id="progress"></div>
+        <!-- СТРАНИЦА 3: ВЫБОР ОРГАНИЗАЦИИ -->
+        <div id="pageOrganization" class="page">
+            <div class="header">
+                <h1>Выберите организацию</h1>
+                <p>К которой относится нарушивший</p>
             </div>
-
-            <!-- Шаг 1: Организация -->
-            <div id="step1" class="step active">
-                <div class="step-indicator">Шаг 1 из 8</div>
-                <label class="step-label">Выберите организацию, к которой относится нарушивший:</label>
-                <div class="group-checkbox">
-                    <label class="checkbox-item">
-                        АО «Самаранефтегаз»
-                        <input type="radio" name="organization" value="АО «Самаранефтегаз»" onchange="handleOrganizationSelect(this.value)">
-                    </label>
-                    <label class="checkbox-item">
-                        Подрядная организация
-                        <input type="radio" name="organization" value="Подрядная организация" onchange="handleOrganizationSelect(this.value)">
-                    </label>
+            
+            <div class="step-info" id="step1Info">Шаг 1 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress1"></div></div>
+            
+            <div class="icon-grid">
+                <div class="icon-button" onclick="selectOrganization('АО «Самаранефтегаз»')">
+                    <span class="icon">🏢</span>
+                    <span class="text">АО «Самаранефтегаз»</span>
                 </div>
-            </div>
-
-            <!-- Шаг 2: Группа (только для АО Самаранефтегаз) -->
-            <div id="step2" class="step">
-                <div class="step-indicator">Шаг 2 из 8</div>
-                <label class="step-label">Выберите группу:</label>
-                <div class="group-checkbox">
-                    <label class="checkbox-item">
-                        Южная группа
-                        <input type="radio" name="group" value="Южная" onchange="handleGroupSelect(this.value)">
-                    </label>
-                    <label class="checkbox-item">
-                        Центральная группа
-                        <input type="radio" name="group" value="Центральная" onchange="handleGroupSelect(this.value)">
-                    </label>
-                    <label class="checkbox-item">
-                        Северная группа
-                        <input type="radio" name="group" value="Северная" onchange="handleGroupSelect(this.value)">
-                    </label>
-                    <label class="checkbox-item">
-                        ОДЦ
-                        <input type="radio" name="group" value="ОДЦ" onchange="handleGroupSelect(this.value)">
-                    </label>
-                </div>
-                <div class="button-group">
-                    <button class="step-button back" onclick="goToStep(1)">← Назад</button>
+                
+                <div class="icon-button" onclick="selectOrganization('Подрядная организация')">
+                    <span class="icon">👷</span>
+                    <span class="text">Подрядная организация</span>
                 </div>
             </div>
-
-            <!-- Шаг 3: Управление -->
-            <div id="step3" class="step">
-                <div class="step-indicator">Шаг 3 из 8</div>
-                <label class="step-label">Выберите управление:</label>
-                <select class="step-select" id="managementSelect" onchange="handleManagementChange()">
-                    <option value="">-- выбрать --</option>
-                    <option value="Нет в списке">Нет в списке</option>
-                    <option value="Не знаю">Не знаю</option>
-                    <option value="УДНГ">УДНГ</option>
-                    <option value="УППН">УППН</option>
-                    <option value="УППД">УППД</option>
-                    <option value="УПКГ">УПКГ</option>
-                    <option value="УЭТ">УЭТ</option>
-                    <option value="ПСК">ПСК</option>
-                    <option value="УКК">УКК</option>
-                    <option value="Блок Энергетика">Блок Энергетика</option>
-                </select>
-                <div class="button-group">
-                    <button class="step-button back" onclick="goToStep(2)">← Назад</button>
-                    <button class="step-button next" onclick="nextFromStep3()">Далее →</button>
-                </div>
-            </div>
-
-            <!-- Шаг 4: Подрядная организация -->
-            <div id="step4" class="step">
-                <div class="step-indicator">Шаг 2 из 8</div>
-                <label class="step-label">Укажите наименование подрядной организации:</label>
-                <input type="text" class="step-input" id="contractorInput" placeholder="Например: ООО Восток">
-                <div class="button-group">
-                    <button class="step-button back" onclick="goToStep(1)">← Назад</button>
-                    <button class="step-button next" onclick="nextFromStep4()">Далее →</button>
-                </div>
-            </div>
-
-            <!-- Шаг 5: Цех/Участок -->
-            <div id="step5" class="step">
-                <div class="step-indicator" id="step5Indicator">Шаг 4 из 8</div>
-                <label class="step-label">Выберите или введите цех / участок / лабораторию:</label>
-                <select class="step-select" id="shopSelect" style="display:none;">
-                    <option value="">-- выбрать --</option>
-                </select>
-                <input type="text" class="step-input" id="shopInput" placeholder="Введите вручную">
-                <div class="button-group">
-                    <button class="step-button back" id="step5BackButton" onclick="goToStep(3)">← Назад</button>
-                    <button class="step-button next" onclick="nextFromStep5()">Далее →</button>
-                </div>
-            </div>
-
-            <!-- Шаг 6: Область нарушения -->
-            <div id="step6" class="step">
-                <div class="step-indicator" id="step6Indicator">Шаг 5 из 8</div>
-                <label class="step-label">Область нарушения:</label>
-                <select class="step-select" id="areaSelect" onchange="handleAreaChange()">
-                    <option value="">-- выбрать --</option>
-                    <option value="СИЗ">СИЗ</option>
-                    <option value="Инструктаж">Инструктаж</option>
-                    <option value="Транспортная безопасность">Транспортная безопасность</option>
-                    <option value="Работы повышенной опасности">Работы повышенной опасности</option>
-                    <option value="Пожарная безопасность">Пожарная безопасность</option>
-                    <option value="Передвижение по лестнице">Передвижение по лестнице</option>
-                    <option value="Электробезопасность">Электробезопасность</option>
-                </select>
-                <div class="button-group">
-                    <button class="step-button back" onclick="goToStep(5)">← Назад</button>
-                    <button class="step-button next" onclick="nextFromStep6()">Далее →</button>
-                </div>
-            </div>
-
-            <!-- Шаг 7: Место нарушения -->
-            <div id="step7" class="step">
-                <div class="step-indicator" id="step7Indicator">Шаг 6 из 8</div>
-                <label class="step-label" id="placeLabel">Объект/место нарушения:</label>
-                <textarea class="step-textarea" id="placeInput" placeholder="Например: УПН Алакаевская, здание операторной" rows="2"></textarea>
-                <div id="transportExtra" style="display:none; margin-top: 20px;">
-                    <label class="step-label">Марка или гос.номер транспортного средства:</label>
-                    <textarea class="step-textarea" id="transportInput" placeholder="Например: ПАЗ, В187ВЕ763" rows="2"></textarea>
-                </div>
-                <div class="button-group">
-                    <button class="step-button back" onclick="goToStep(6)">← Назад</button>
-                    <button class="step-button next" onclick="nextFromStep7()">Далее →</button>
-                </div>
-            </div>
-
-            <!-- Шаг 8: Описание нарушения -->
-            <div id="step8" class="step">
-                <div class="step-indicator" id="step8Indicator">Шаг 7 из 8</div>
-                <label class="step-label">Описание нарушения:</label>
-                <textarea class="step-textarea" id="descInput" placeholder="Например: Работник (Ф.И.О. если знаете) передвигался по территории объекта без каски" rows="4"></textarea>
-                <div class="button-group">
-                    <button class="step-button back" onclick="goToStep(7)">← Назад</button>
-                    <button class="step-button send" onclick="sendMessage()">📤 Отправить сообщение</button>
-                </div>
-            </div>
-
-            <button class="back-button" id="cancelButton" onclick="cancelSteps()">← Назад в главное меню</button>
         </div>
-    </div>
 
-    <!-- НИЖНИЙ ТУЛБАР -->
-    <div class="bottom-toolbar">
-        <button class="toolbar-button active" onclick="showPage('pageMessages')">
-            <span class="toolbar-icon">💬</span>
-            <span class="toolbar-label">Сообщения</span>
-        </button>
-        
-        <button class="toolbar-button" onclick="showPage('pageReferences')">
-            <span class="toolbar-icon">📚</span>
-            <span class="toolbar-label">Памятки</span>
-        </button>
+        <!-- СТРАНИЦА 4: ВЫБОР ГРУППЫ -->
+        <div id="pageGroup" class="page">
+            <div class="header">
+                <h1>Выберите группу</h1>
+            </div>
+            
+            <div class="step-info" id="step2Info">Шаг 2 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress2"></div></div>
+            
+            <div class="icon-grid">
+                <div class="icon-button" onclick="selectGroup('Южная')">
+                    <span class="icon">🧭</span>
+                    <span class="text">Южная группа</span>
+                </div>
+                
+                <div class="icon-button" onclick="selectGroup('Центральная')">
+                    <span class="icon">🎯</span>
+                    <span class="text">Центральная группа</span>
+                </div>
+                
+                <div class="icon-button" onclick="selectGroup('Северная')">
+                    <span class="icon">🧊</span>
+                    <span class="text">Северная группа</span>
+                </div>
+                
+                <div class="icon-button" onclick="selectGroup('ОДЦ')">
+                    <span class="icon">🏛️</span>
+                    <span class="text">ОДЦ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА 5: ВЫБОР УПРАВЛЕНИЯ -->
+        <div id="pageManagement" class="page">
+            <div class="header">
+                <h1>Выберите управление</h1>
+            </div>
+            
+            <div class="step-info" id="step3Info">Шаг 3 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress3"></div></div>
+            
+            <div class="scroll-container">
+                <div class="scroll-item" onclick="selectManagement('УДНГ')">
+                    <span class="icon">🛢️</span>
+                    <span class="text">УДНГ</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('УППН')">
+                    <span class="icon">⛽</span>
+                    <span class="text">УППН</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('УППД')">
+                    <span class="icon">🔧</span>
+                    <span class="text">УППД</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('УПКГ')">
+                    <span class="icon">🏭</span>
+                    <span class="text">УПКГ</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('УЭТ')">
+                    <span class="icon">⚡</span>
+                    <span class="text">УЭТ</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('ПСК')">
+                    <span class="icon">🔨</span>
+                    <span class="text">ПСК</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('УКК')">
+                    <span class="icon">🧪</span>
+                    <span class="text">УКК</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('Блок Энергетика')">
+                    <span class="icon">💡</span>
+                    <span class="text">Энергетика</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('Нет в списке')">
+                    <span class="icon">❓</span>
+                    <span class="text">Нет в списке</span>
+                </div>
+                
+                <div class="scroll-item" onclick="selectManagement('Не знаю')">
+                    <span class="icon">🤷</span>
+                    <span class="text">Не знаю</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА 6: ВЫБОР ЦЕХА -->
+        <div id="pageShop" class="page">
+            <div class="header">
+                <h1>Выберите цех/участок</h1>
+            </div>
+            
+            <div class="step-info" id="step4Info">Шаг 4 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress4"></div></div>
+            
+            <div id="shopContainer">
+                <!-- Динамически заполняется цехами -->
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА 7: ОБЛАСТЬ НАРУШЕНИЯ -->
+        <div id="pageArea" class="page">
+            <div class="header">
+                <h1>Область нарушения</h1>
+            </div>
+            
+            <div class="step-info" id="step5Info">Шаг 5 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress5"></div></div>
+            
+            <div class="circle-grid">
+                <div class="circle-button" onclick="selectArea('СИЗ')">
+                    <span class="icon">🛡️</span>
+                    <span class="text">СИЗ</span>
+                </div>
+                
+                <div class="circle-button" onclick="selectArea('Инструктаж')">
+                    <span class="icon">📋</span>
+                    <span class="text">Инструктаж</span>
+                </div>
+                
+                <div class="circle-button" onclick="selectArea('Транспортная безопасность')">
+                    <span class="icon">🚗</span>
+                    <span class="text">Транспорт</span>
+                </div>
+                
+                <div class="circle-button" onclick="selectArea('Работы повышенной опасности')">
+                    <span class="icon">⚠️</span>
+                    <span class="text">Опасные работы</span>
+                </div>
+                
+                <div class="circle-button" onclick="selectArea('Пожарная безопасность')">
+                    <span class="icon">🔥</span>
+                    <span class="text">Пожарная безопасность</span>
+                </div>
+                
+                <div class="circle-button" onclick="selectArea('Передвижение по лестнице')">
+                    <span class="icon">📶</span>
+                    <span class="text">Лестницы</span>
+                </div>
+                
+                <div class="circle-button" onclick="selectArea('Электробезопасность')">
+                    <span class="icon">⚡</span>
+                    <span class="text">Электричество</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА 8: МЕСТО НАРУШЕНИЯ -->
+        <div id="pagePlace" class="page">
+            <div class="header">
+                <h1>Место нарушения</h1>
+                <p>Укажите где произошло нарушение</p>
+            </div>
+            
+            <div class="step-info" id="step6Info">Шаг 6 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress6"></div></div>
+            
+            <div class="input-group">
+                <label class="input-label">Объект/место нарушения:</label>
+                <textarea class="textarea-input" id="placeInput" placeholder="Например: УПН Алакаевская, здание операторной"></textarea>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToStep('pageArea')">Назад</button>
+                <button class="nav-button next" onclick="goToStep('pageDescription')">Далее</button>
+            </div>
+        </div>
+
+        <!-- СТРАНИЦА 9: ОПИСАНИЕ НАРУШЕНИЯ -->
+        <div id="pageDescription" class="page">
+            <div class="header">
+                <h1>Описание нарушения</h1>
+                <p>Подробно опишите что произошло</p>
+            </div>
+            
+            <div class="step-info" id="step7Info">Шаг 7 из 7</div>
+            <div class="progress-bar"><div class="progress" id="progress7"></div></div>
+            
+            <div class="input-group">
+                <label class="input-label">Что произошло:</label>
+                <textarea class="textarea-input" id="descInput" placeholder="Например: Работник передвигался по территории объекта без каски"></textarea>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToStep('pagePlace')">Назад</button>
+                <button class="nav-button send" onclick="sendMessage()">Отправить</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Структуры данных
+        // Данные для цехов
         const structures = {
             "УДНГ": ["ЦДНГ-2","ЦДНГ-3","ЦДНГ-4","ЦДНГ-5","ЦДНГ-6","ЦДНГ-7","ЦДНГ-8"],
             "УППН": ["ЦППН-1","ЦППН-3","ЦППН-4","ЦППН-5","ЦППН-6"],
@@ -793,332 +664,165 @@
             "Блок Энергетика": ["СРЭ","ЦЭОТ-2","ЦЭОТ-3","ЦЭЭ-5","ЦЭЭ-6"]
         };
 
+        // Переменные формы
         let selectedType = "";
-        let currentStep = 1;
-        let selectedOrganization = "";
-        let selectedGroup = "";
+        let formData = {
+            organization: "",
+            group: "",
+            management: "",
+            shop: "",
+            area: "",
+            place: "",
+            description: ""
+        };
 
-        // Навигация между страницами - ИСПРАВЛЕННАЯ ФУНКЦИЯ
+        // Навигация по страницам
         function showPage(pageId) {
-            // Скрываем форму с шагами если она открыта
-            if (document.getElementById('stepsContainer').style.display === 'block') {
-                document.getElementById('stepsContainer').style.display = 'none';
-                document.getElementById('progressBar').style.display = 'none';
-                document.getElementById('cancelButton').style.display = 'none';
-            }
-            
-            // Скрываем все страницы
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Показываем выбранную страницу
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            // Обновляем активную кнопку в тулбаре
-            document.querySelectorAll('.toolbar-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            if (pageId === 'pageMessages') {
-                document.querySelector('.toolbar-button:nth-child(1)').classList.add('active');
-            } else if (pageId === 'pageReferences') {
-                document.querySelector('.toolbar-button:nth-child(2)').classList.add('active');
-            }
-        }
-
-        // Навигация по шагам формы
-        function goToStep(stepNumber) {
-            // Скрываем все шаги
-            document.querySelectorAll('.step').forEach(step => {
-                step.classList.remove('active');
-            });
-            
-            // Показываем выбранный шаг
-            document.getElementById(`step${stepNumber}`).classList.add('active');
-            currentStep = stepNumber;
-            
-            // Обновляем прогресс-бар
-            updateProgress((stepNumber / 8) * 100);
-            
-            // Обновляем индикаторы шагов
-            updateStepIndicators();
-            
-            // Прокручиваем к верху
             window.scrollTo(0, 0);
         }
 
-        function updateStepIndicators() {
-            // Обновляем номера шагов в зависимости от выбранного пути
-            if (selectedOrganization === "Подрядная организация") {
-                document.getElementById('step4Indicator').textContent = "Шаг 2 из 7";
-                document.getElementById('step5Indicator').textContent = "Шаг 3 из 7";
-                document.getElementById('step6Indicator').textContent = "Шаг 4 из 7";
-                document.getElementById('step7Indicator').textContent = "Шаг 5 из 7";
-                document.getElementById('step8Indicator').textContent = "Шаг 6 из 7";
-                
-                // Обновляем кнопку назад для шага 5
-                document.getElementById('step5BackButton').onclick = function() { goToStep(4); };
-            } else {
-                document.getElementById('step4Indicator').textContent = "Шаг 2 из 8";
-                document.getElementById('step5Indicator').textContent = "Шаг 4 из 8";
-                document.getElementById('step6Indicator').textContent = "Шаг 5 из 8";
-                document.getElementById('step7Indicator').textContent = "Шаг 6 из 8";
-                document.getElementById('step8Indicator').textContent = "Шаг 7 из 8";
-                
-                // Обновляем кнопку назад для шага 5
-                document.getElementById('step5BackButton').onclick = function() { goToStep(3); };
+        function goToStep(pageId) {
+            showPage(pageId);
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const steps = {
+                'pageOrganization': 1,
+                'pageGroup': 2,
+                'pageManagement': 3,
+                'pageShop': 4,
+                'pageArea': 5,
+                'pagePlace': 6,
+                'pageDescription': 7
+            };
+            
+            const currentPage = document.querySelector('.page.active').id;
+            const currentStep = steps[currentPage] || 0;
+            
+            // Обновляем все прогресс-бары
+            for (let i = 1; i <= 7; i++) {
+                const progress = document.getElementById(`progress${i}`);
+                const info = document.getElementById(`step${i}Info`);
+                if (progress) {
+                    progress.style.width = i <= currentStep ? '100%' : '0%';
+                }
+                if (info && i === currentStep) {
+                    info.textContent = `Шаг ${i} из 7`;
+                }
             }
         }
 
+        // Обработчики выбора
         function startSteps(type) {
             selectedType = type;
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById('stepsContainer').style.display = 'block';
-            document.getElementById('progressBar').style.display = 'block';
-            document.getElementById('cancelButton').style.display = 'block';
-            
-            // Сброс формы
-            resetForm();
-            goToStep(1);
-            window.scrollTo(0, 0);
+            formData = {
+                organization: "",
+                group: "",
+                management: "",
+                shop: "",
+                area: "",
+                place: "",
+                description: ""
+            };
+            goToStep('pageOrganization');
         }
 
-        function cancelSteps() {
-            document.getElementById('stepsContainer').style.display = 'none';
-            document.getElementById('progressBar').style.display = 'none';
-            document.getElementById('cancelButton').style.display = 'none';
-            showPage('pageMessages');
-            resetForm();
-        }
-
-        function resetForm() {
-            // Сброс всех полей формы
-            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.checked = false;
-            });
-            document.querySelectorAll('.step-select, .step-input, .step-textarea').forEach(field => {
-                field.value = '';
-            });
-            document.getElementById('transportExtra').style.display = 'none';
-            document.getElementById('shopSelect').style.display = 'none';
-            document.getElementById('shopInput').style.display = 'block';
-            document.getElementById('placeInput').style.display = 'block';
-            document.getElementById('placeLabel').style.display = 'block';
-            currentStep = 1;
-            selectedOrganization = "";
-            selectedGroup = "";
-            updateProgress(0);
-        }
-
-        function updateProgress(percent) {
-            document.getElementById('progress').style.width = percent + '%';
-        }
-
-        // Обработчики выбора в форме
-        function handleOrganizationSelect(organization) {
-            selectedOrganization = organization;
-            if (organization === "АО «Самаранефтегаз»") {
-                goToStep(2); // Переходим к выбору группы
-            } else if (organization === "Подрядная организация") {
-                goToStep(4); // Переходим к вводу названия подрядной организации
-            }
-        }
-
-        function handleGroupSelect(group) {
-            selectedGroup = group;
-            if (group === "ОДЦ") {
-                goToStep(5); // Для ОДЦ пропускаем управление и цех
+        function selectOrganization(org) {
+            formData.organization = org;
+            if (org === 'Подрядная организация') {
+                // Пропускаем выбор группы и управления для подрядных
+                formData.group = "";
+                formData.management = "";
+                formData.shop = "";
+                goToStep('pageArea');
             } else {
-                goToStep(3); // Для других групп переходим к управлению
+                goToStep('pageGroup');
             }
         }
 
-        function handleManagementChange() {
-            const management = document.getElementById('managementSelect').value;
-            const shopSelect = document.getElementById('shopSelect');
-            const shopInput = document.getElementById('shopInput');
+        function selectGroup(group) {
+            formData.group = group;
+            if (group === 'ОДЦ') {
+                // Для ОДЦ пропускаем выбор цеха
+                formData.management = "ОДЦ";
+                formData.shop = "";
+                goToStep('pageArea');
+            } else {
+                goToStep('pageManagement');
+            }
+        }
+
+        function selectManagement(management) {
+            formData.management = management;
             
-            if (!management) return;
-            
-            if (management === "Нет в списке" || management === "Не знаю") {
-                shopSelect.style.display = 'none';
-                shopInput.style.display = 'block';
-                shopInput.value = management;
+            if (management === 'Нет в списке' || management === 'Не знаю') {
+                formData.shop = management;
+                goToStep('pageArea');
             } else if (structures[management]) {
-                shopInput.style.display = 'none';
-                shopSelect.style.display = 'block';
-                shopSelect.innerHTML = '<option value="">-- выбрать --</option>';
-                structures[management].forEach(s => {
-                    const opt = document.createElement('option');
-                    opt.value = s;
-                    opt.textContent = s;
-                    shopSelect.appendChild(opt);
-                });
+                showShops(structures[management]);
+                goToStep('pageShop');
             } else {
-                shopSelect.style.display = 'none';
-                shopInput.style.display = 'none';
+                formData.shop = "";
+                goToStep('pageArea');
             }
         }
 
-        function handleAreaChange() {
-            const area = document.getElementById('areaSelect').value;
+        function showShops(shops) {
+            const container = document.getElementById('shopContainer');
+            container.innerHTML = '<div class="icon-grid"></div>';
+            const grid = container.querySelector('.icon-grid');
             
-            if (selectedGroup === "ОДЦ") {
-                document.getElementById('placeLabel').textContent = "Место нарушения:";
-                document.getElementById('placeInput').placeholder = "Например: 4 этаж:лестница или территория ОДЦ";
-                
-                if (area === "Транспортная безопасность") {
-                    document.getElementById('placeInput').style.display = 'none';
-                    document.getElementById('placeLabel').style.display = 'none';
-                    document.getElementById('transportExtra').style.display = 'block';
-                } else {
-                    document.getElementById('placeInput').style.display = 'block';
-                    document.getElementById('placeLabel').style.display = 'block';
-                    document.getElementById('transportExtra').style.display = 'none';
-                }
-            } else {
-                document.getElementById('placeLabel').textContent = "Объект/место нарушения:";
-                document.getElementById('placeInput').placeholder = "Например: УПН Алакаевская, здание операторной";
-                document.getElementById('placeInput').style.display = 'block';
-                document.getElementById('placeLabel').style.display = 'block';
-                
-                if (area === "Транспортная безопасность") {
-                    document.getElementById('transportExtra').style.display = 'block';
-                } else {
-                    document.getElementById('transportExtra').style.display = 'none';
-                }
-            }
+            shops.forEach(shop => {
+                const button = document.createElement('div');
+                button.className = 'icon-button';
+                button.onclick = () => {
+                    formData.shop = shop;
+                    goToStep('pageArea');
+                };
+                button.innerHTML = `
+                    <span class="icon">🏗️</span>
+                    <span class="text">${shop}</span>
+                `;
+                grid.appendChild(button);
+            });
         }
 
-        // Функции для кнопок "Далее"
-        function nextFromStep3() {
-            const management = document.getElementById('managementSelect').value;
-            if (!management) {
-                alert('Пожалуйста, выберите управление');
-                return;
-            }
-            goToStep(5); // Переходим к цеху/участку
+        function selectArea(area) {
+            formData.area = area;
+            goToStep('pagePlace');
         }
 
-        function nextFromStep4() {
-            const contractor = document.getElementById('contractorInput').value.trim();
-            if (!contractor) {
-                alert('Пожалуйста, введите название подрядной организации');
-                return;
-            }
-            goToStep(5); // Переходим к области нарушения (пропускаем цех для подрядных)
-        }
-
-        function nextFromStep5() {
-            // Проверяем, заполнено ли поле цеха/участка (только для АО Самаранефтегаз)
-            if (selectedOrganization === "АО «Самаранефтегаз»" && selectedGroup !== "ОДЦ") {
-                const shopSelect = document.getElementById('shopSelect');
-                const shopInput = document.getElementById('shopInput');
-                let shopValue = "";
-                
-                if (shopSelect.style.display !== 'none') {
-                    shopValue = shopSelect.value;
-                } else if (shopInput.style.display !== 'none') {
-                    shopValue = shopInput.value;
-                }
-                
-                if (!shopValue) {
-                    alert('Пожалуйста, выберите или введите цех/участок');
-                    return;
-                }
-            }
-            goToStep(6); // Переходим к области нарушения
-        }
-
-        function nextFromStep6() {
-            const area = document.getElementById('areaSelect').value;
-            if (!area) {
-                alert('Пожалуйста, выберите область нарушения');
-                return;
-            }
-            goToStep(7); // Переходим к месту нарушения
-        }
-
-        function nextFromStep7() {
-            const place = document.getElementById('placeInput').value.trim();
-            const transport = document.getElementById('transportInput').value.trim();
-            
-            // Проверяем в зависимости от типа нарушения
-            if (document.getElementById('areaSelect').value === "Транспортная безопасность") {
-                if (!transport) {
-                    alert('Пожалуйста, укажите марку или гос.номер транспортного средства');
-                    return;
-                }
-            } else {
-                if (!place) {
-                    alert('Пожалуйста, укажите место нарушения');
-                    return;
-                }
-            }
-            goToStep(8); // Переходим к описанию нарушения
-        }
-
+        // Отправка сообщения
         function sendMessage() {
-            const desc = document.getElementById('descInput').value.trim();
-            if (!desc) {
+            formData.place = document.getElementById('placeInput').value.trim();
+            formData.description = document.getElementById('descInput').value.trim();
+            
+            if (!formData.description) {
                 alert('Пожалуйста, опишите нарушение');
                 return;
             }
 
-            // Сбор данных из формы
-            const organization = selectedOrganization || "Не указано";
-            const group = selectedGroup || "";
-            const management = document.getElementById('managementSelect').value || "";
-            const contractor = document.getElementById('contractorInput').value || "";
-            
-            let shop = "";
-            const shopSelect = document.getElementById('shopSelect');
-            const shopInput = document.getElementById('shopInput');
-            if (shopSelect.style.display !== 'none' && shopSelect.value) {
-                shop = shopSelect.value;
-            } else if (shopInput.style.display !== 'none' && shopInput.value) {
-                shop = shopInput.value;
-            }
-            
-            const area = document.getElementById('areaSelect').value || "";
-            const place = document.getElementById('placeInput').value || "";
-            const transport = document.getElementById('transportInput').value || "";
-            
-            // Формирование сообщения
+            // Формируем сообщение
             let message = `Сообщение о нарушении:\n\n`;
-            message += `Организация: ${organization}`;
+            message += `Организация: ${formData.organization}\n`;
             
-            if (organization === "АО «Самаранефтегаз»") {
-                if (group) message += `\nГруппа: ${group}`;
-                if (management) message += `\nУправление: ${management}`;
-            }
-            
-            if (organization === "Подрядная организация" && contractor) {
-                message += `\nПодрядная организация: ${contractor}`;
-            }
-            
-            if (shop) message += `\nЦех/участок: ${shop}`;
-            if (area) message += `\nОбласть нарушения: ${area}`;
-            
-            // Для ОДЦ указываем место только если не транспортная безопасность
-            if (group === "ОДЦ") {
-                if (area !== "Транспортная безопасность" && place) {
-                    message += `\nМесто нарушения: ${place}`;
-                }
+            if (formData.organization === 'АО «Самаранефтегаз»') {
+                if (formData.group) message += `Группа: ${formData.group}\n`;
+                if (formData.management) message += `Управление: ${formData.management}\n`;
+                if (formData.shop) message += `Цех/участок: ${formData.shop}\n`;
             } else {
-                if (place) message += `\nОбъект/место: ${place}`;
+                // Для подрядных организаций
+                if (formData.management) message += `Управление: ${formData.management}\n`;
             }
             
-            if (area === "Транспортная безопасность" && transport) {
-                message += `\nМарка/гос.номер: ${transport}`;
-            }
-            
-            message += `\n\nОписание нарушения:\n${desc}`;
+            message += `Область нарушения: ${formData.area}\n`;
+            if (formData.place) message += `Место: ${formData.place}\n`;
+            message += `\nОписание:\n${formData.description}`;
 
-            // Отправка в зависимости от выбранного типа
+            // Отправка
             if (selectedType === 'wa') {
                 window.open(`https://wa.me/79371809021?text=${encodeURIComponent(message)}`, '_blank');
             } else if (selectedType === 'tg') {
@@ -1128,51 +832,41 @@
             }
             
             alert('Сообщение подготовлено для отправки!');
-            cancelSteps();
+            showPage('pageWelcome');
         }
 
-        // Остальные функции
+        // Простые функции
         function makeCall() {
             window.open('tel:+79371809021');
         }
 
-        function openRules() {
-            alert('Золотые правила безопасности - открывается PDF документ');
-        }
-
-        function openFirstAid() {
-            alert('Памятка первой помощи - открывается PDF документ');
-        }
-
         // PWA функциональность
         let deferredPrompt;
-        const installPrompt = document.getElementById('installPrompt');
-
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
             setTimeout(() => {
-                if (deferredPrompt) installPrompt.style.display = 'block';
+                if (deferredPrompt) document.getElementById('installPrompt').style.display = 'block';
             }, 3000);
         });
 
         function installApp() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
+                deferredPrompt.userChoice.then(() => {
                     deferredPrompt = null;
-                    installPrompt.style.display = 'none';
+                    document.getElementById('installPrompt').style.display = 'none';
                 });
             }
         }
 
         function dismissPrompt() {
-            installPrompt.style.display = 'none';
+            document.getElementById('installPrompt').style.display = 'none';
         }
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js')
+                navigator.serviceWorker.register('/pbotos-app/sw.js')
                     .catch(error => console.log('SW error:', error));
             });
         }
