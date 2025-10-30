@@ -1,0 +1,25 @@
+{
+  "name": "ПБОТОС - Нарушения безопасности",
+  "short_name": "ПБОТОС",
+  "description": "Приложение для оперативного сообщения о нарушениях правил безопасности",
+  "start_url": "/pbotos-app/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "portrait",
+  "scope": "/pbotos-app/",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
