@@ -10,7 +10,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="ПБОТОС">
-    <link rel="manifest" href="manifest.json">
     
     <style>
         * {
@@ -24,7 +23,7 @@
             background: #121212;
             color: white;
             min-height: 100vh;
-            padding: 20px;
+            padding: 20px 20px 80px 20px;
             line-height: 1.4;
         }
 
@@ -66,6 +65,55 @@
             font-size: 1rem;
         }
 
+        /* ЛОГОТИП НА ПЕРВОЙ СТРАНИЦЕ */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: logoPulse 2s ease-in-out infinite;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd200;
+            margin-bottom: 10px;
+        }
+
+        .logo-subtext {
+            font-size: 1.2rem;
+            color: #ccc;
+            opacity: 0;
+            animation: fadeInDelayed 0.5s ease-in-out 1s forwards;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes fadeInDelayed {
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.8); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* КНОПКИ И ИКОНКИ */
         .button-grid {
             display: grid;
@@ -87,6 +135,8 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-in-out 3.5s forwards;
         }
 
         .big-button:hover {
@@ -135,6 +185,12 @@
         .icon-button .text {
             font-size: 0.9rem;
             font-weight: 500;
+            text-align: center;
+        }
+
+        .icon-button.selected {
+            border-color: #ffd200;
+            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
         }
 
         /* ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
@@ -166,6 +222,11 @@
 
         .scroll-item:hover {
             border-color: #28a745;
+        }
+
+        .scroll-item.selected {
+            border-color: #ffd200;
+            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
         }
 
         .scroll-item .icon {
@@ -204,6 +265,11 @@
         .circle-button:hover {
             transform: scale(1.05);
             border-color: #dc3545;
+        }
+
+        .circle-button.selected {
+            border-color: #ffd200;
+            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
         }
 
         .circle-button .icon {
@@ -283,7 +349,19 @@
             color: white;
         }
 
-        .nav-button:hover {
+        .nav-button.cancel {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .nav-button:disabled {
+            background: #6c757d;
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-button:hover:not(:disabled) {
             transform: translateY(-2px);
         }
 
@@ -311,37 +389,76 @@
             margin-bottom: 10px;
         }
 
-        /* PWA УСТАНОВКА */
-        .install-prompt {
+        /* ТУЛБАР */
+        .bottom-toolbar {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: white;
-            color: black;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            display: none;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            border-top: 2px solid #333;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
             z-index: 1000;
-            text-align: center;
+            backdrop-filter: blur(10px);
         }
 
-        .install-prompt button {
-            background: #007bff;
-            color: white;
+        .toolbar-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: none;
             border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 8px;
+            color: #888;
             cursor: pointer;
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .toolbar-button.active {
+            color: #ffd200;
+            background: rgba(255, 210, 0, 0.1);
+        }
+
+        .toolbar-button:hover {
+            color: #ffd200;
+            background: rgba(255, 210, 0, 0.05);
+        }
+
+        .toolbar-icon {
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .toolbar-button.active .toolbar-icon {
+            transform: scale(1.1);
+        }
+
+        .toolbar-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ДОПОЛНИТЕЛЬНЫЕ ПОЛЯ */
+        .extra-fields {
+            margin-top: 20px;
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 12px;
+            border: 2px solid #333;
+            display: none;
         }
 
         /* АДАПТИВНОСТЬ */
         @media (max-width: 480px) {
             body {
-                padding: 15px;
+                padding: 15px 15px 80px 15px;
             }
             
             .header {
@@ -351,6 +468,18 @@
             
             .header h1 {
                 font-size: 1.7rem;
+            }
+            
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .logo-text {
+                font-size: 1.7rem;
+            }
+            
+            .logo-subtext {
+                font-size: 1rem;
             }
             
             .icon-grid {
@@ -372,36 +501,45 @@
                 padding: 20px;
                 font-size: 1rem;
             }
+            
+            .bottom-toolbar {
+                padding: 10px 15px;
+            }
+            
+            .toolbar-button {
+                padding: 6px 12px;
+            }
+            
+            .toolbar-icon {
+                font-size: 1.3rem;
+            }
+            
+            .toolbar-label {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Окно установки PWA -->
-    <div class="install-prompt" id="installPrompt">
-        <p><strong>Установите приложение ПБОТОС</strong></p>
-        <p>Для быстрого доступа с домашнего экрана</p>
-        <button onclick="installApp()">Установить</button>
-        <button onclick="dismissPrompt()">Позже</button>
-    </div>
-
     <div class="container">
         <!-- СТРАНИЦА 1: ПРИВЕТСТВИЕ -->
         <div id="pageWelcome" class="page active">
-            <div class="header">
-                <h1>🚨 ПБОТОС</h1>
-                <p>Система оперативного сообщения о нарушениях безопасности</p>
+            <div class="logo-container" id="logoContainer">
+                <div class="logo">🚨</div>
+                <div class="logo-text">ПБОТОС</div>
+                <div class="logo-subtext">Система оперативного сообщения о нарушениях безопасности</div>
             </div>
             
             <div class="button-grid">
-                <button class="big-button" onclick="showPage('pageReport')">
+                <button class="big-button" onclick="startApp()">
                     <span class="icon">📝</span>
                     НАЧАТЬ
                 </button>
             </div>
         </div>
 
-        <!-- СТРАНИЦА 2: ВЫБОР СПОСОБА СООБЩЕНИЯ -->
-        <div id="pageReport" class="page">
+        <!-- СТРАНИЦА 2: СООБЩЕНИЯ -->
+        <div id="pageMessages" class="page">
             <div class="header">
                 <h1>Сообщить о нарушении</h1>
                 <p>Выберите способ связи</p>
@@ -430,14 +568,46 @@
             </div>
         </div>
 
-        <!-- СТРАНИЦА 3: ВЫБОР ОРГАНИЗАЦИИ -->
+        <!-- СТРАНИЦА 3: ПАМЯТКИ -->
+        <div id="pageReferences" class="page">
+            <div class="header">
+                <h1>Памятки и правила</h1>
+                <p>Информационные материалы</p>
+            </div>
+            
+            <div class="icon-grid">
+                <div class="icon-button" onclick="openRules()">
+                    <span class="icon">📚</span>
+                    <span class="text">Золотые правила</span>
+                </div>
+                
+                <div class="icon-button" onclick="openFirstAid()">
+                    <span class="icon">🏥</span>
+                    <span class="text">Первая помощь</span>
+                </div>
+                
+                <div class="icon-button" onclick="openFireSafety()">
+                    <span class="icon">🔥</span>
+                    <span class="text">Пожарная безопасность</span>
+                </div>
+                
+                <div class="icon-button" onclick="openElectricalSafety()">
+                    <span class="icon">⚡</span>
+                    <span class="text">Электробезопасность</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ШАГИ ФОРМЫ -->
+
+        <!-- ШАГ 1: ОРГАНИЗАЦИЯ -->
         <div id="pageOrganization" class="page">
             <div class="header">
                 <h1>Выберите организацию</h1>
                 <p>К которой относится нарушивший</p>
             </div>
             
-            <div class="step-info" id="step1Info">Шаг 1 из 7</div>
+            <div class="step-info" id="step1Info">Шаг 1 из 8</div>
             <div class="progress-bar"><div class="progress" id="progress1"></div></div>
             
             <div class="icon-grid">
@@ -451,15 +621,19 @@
                     <span class="text">Подрядная организация</span>
                 </div>
             </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button cancel" onclick="cancelSteps()">Отмена</button>
+            </div>
         </div>
 
-        <!-- СТРАНИЦА 4: ВЫБОР ГРУППЫ -->
+        <!-- ШАГ 2: ГРУППА -->
         <div id="pageGroup" class="page">
             <div class="header">
                 <h1>Выберите группу</h1>
             </div>
             
-            <div class="step-info" id="step2Info">Шаг 2 из 7</div>
+            <div class="step-info" id="step2Info">Шаг 2 из 8</div>
             <div class="progress-bar"><div class="progress" id="progress2"></div></div>
             
             <div class="icon-grid">
@@ -483,15 +657,19 @@
                     <span class="text">ОДЦ</span>
                 </div>
             </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToStep('pageOrganization')">Назад</button>
+            </div>
         </div>
 
-        <!-- СТРАНИЦА 5: ВЫБОР УПРАВЛЕНИЯ -->
+        <!-- ШАГ 3: УПРАВЛЕНИЕ -->
         <div id="pageManagement" class="page">
             <div class="header">
                 <h1>Выберите управление</h1>
             </div>
             
-            <div class="step-info" id="step3Info">Шаг 3 из 7</div>
+            <div class="step-info" id="step3Info">Шаг 3 из 8</div>
             <div class="progress-bar"><div class="progress" id="progress3"></div></div>
             
             <div class="scroll-container">
@@ -545,30 +723,63 @@
                     <span class="text">Не знаю</span>
                 </div>
             </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToStep('pageGroup')">Назад</button>
+            </div>
         </div>
 
-        <!-- СТРАНИЦА 6: ВЫБОР ЦЕХА -->
+        <!-- ШАГ 4: ПОДРЯДНАЯ ОРГАНИЗАЦИЯ -->
+        <div id="pageContractor" class="page">
+            <div class="header">
+                <h1>Подрядная организация</h1>
+                <p>Укажите наименование организации</p>
+            </div>
+            
+            <div class="step-info" id="step4Info">Шаг 4 из 8</div>
+            <div class="progress-bar"><div class="progress" id="progress4"></div></div>
+            
+            <div class="input-group">
+                <input type="text" class="text-input" id="contractorInput" placeholder="Например: ООО Восток" oninput="handleContractorInput()">
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToStep('pageOrganization')">Назад</button>
+                <button class="nav-button next" id="contractorNext" onclick="goToStep('pageArea')" disabled>Далее</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 5: ЦЕХ -->
         <div id="pageShop" class="page">
             <div class="header">
                 <h1>Выберите цех/участок</h1>
             </div>
             
-            <div class="step-info" id="step4Info">Шаг 4 из 7</div>
-            <div class="progress-bar"><div class="progress" id="progress4"></div></div>
+            <div class="step-info" id="step5Info">Шаг 5 из 8</div>
+            <div class="progress-bar"><div class="progress" id="progress5"></div></div>
             
             <div id="shopContainer">
                 <!-- Динамически заполняется цехами -->
             </div>
+            
+            <div class="input-group" id="shopInputGroup" style="display: none;">
+                <input type="text" class="text-input" id="shopManualInput" placeholder="Введите вручную" oninput="handleShopInput()">
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToStep('pageManagement')">Назад</button>
+                <button class="nav-button next" id="shopNext" onclick="goToStep('pageArea')" disabled>Далее</button>
+            </div>
         </div>
 
-        <!-- СТРАНИЦА 7: ОБЛАСТЬ НАРУШЕНИЯ -->
+        <!-- ШАГ 6: ОБЛАСТЬ НАРУШЕНИЯ -->
         <div id="pageArea" class="page">
             <div class="header">
                 <h1>Область нарушения</h1>
             </div>
             
-            <div class="step-info" id="step5Info">Шаг 5 из 7</div>
-            <div class="progress-bar"><div class="progress" id="progress5"></div></div>
+            <div class="step-info" id="step6Info">Шаг 6 из 8</div>
+            <div class="progress-bar"><div class="progress" id="progress6"></div></div>
             
             <div class="circle-grid">
                 <div class="circle-button" onclick="selectArea('СИЗ')">
@@ -606,49 +817,71 @@
                     <span class="text">Электричество</span>
                 </div>
             </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
+            </div>
         </div>
 
-        <!-- СТРАНИЦА 8: МЕСТО НАРУШЕНИЯ -->
+        <!-- ШАГ 7: МЕСТО НАРУШЕНИЯ -->
         <div id="pagePlace" class="page">
             <div class="header">
                 <h1>Место нарушения</h1>
-                <p>Укажите где произошло нарушение</p>
+                <p id="placeSubtitle">Укажите где произошло нарушение</p>
             </div>
             
-            <div class="step-info" id="step6Info">Шаг 6 из 7</div>
-            <div class="progress-bar"><div class="progress" id="progress6"></div></div>
+            <div class="step-info" id="step7Info">Шаг 7 из 8</div>
+            <div class="progress-bar"><div class="progress" id="progress7"></div></div>
             
-            <div class="input-group">
-                <label class="input-label">Объект/место нарушения:</label>
-                <textarea class="textarea-input" id="placeInput" placeholder="Например: УПН Алакаевская, здание операторной"></textarea>
+            <div class="input-group" id="placeInputGroup">
+                <label class="input-label" id="placeLabel">Объект/место нарушения:</label>
+                <textarea class="textarea-input" id="placeInput" placeholder="Например: УПН Алакаевская, здание операторной" oninput="handlePlaceInput()"></textarea>
+            </div>
+            
+            <div class="extra-fields" id="transportFields">
+                <label class="input-label">Марка или гос.номер транспортного средства:</label>
+                <textarea class="textarea-input" id="transportInput" placeholder="Например: ПАЗ, В187ВЕ763" rows="2" oninput="handleTransportInput()"></textarea>
             </div>
             
             <div class="nav-buttons">
                 <button class="nav-button back" onclick="goToStep('pageArea')">Назад</button>
-                <button class="nav-button next" onclick="goToStep('pageDescription')">Далее</button>
+                <button class="nav-button next" id="placeNext" onclick="goToStep('pageDescription')" disabled>Далее</button>
             </div>
         </div>
 
-        <!-- СТРАНИЦА 9: ОПИСАНИЕ НАРУШЕНИЯ -->
+        <!-- ШАГ 8: ОПИСАНИЕ НАРУШЕНИЯ -->
         <div id="pageDescription" class="page">
             <div class="header">
                 <h1>Описание нарушения</h1>
                 <p>Подробно опишите что произошло</p>
             </div>
             
-            <div class="step-info" id="step7Info">Шаг 7 из 7</div>
-            <div class="progress-bar"><div class="progress" id="progress7"></div></div>
+            <div class="step-info" id="step8Info">Шаг 8 из 8</div>
+            <div class="progress-bar"><div class="progress" id="progress8"></div></div>
             
             <div class="input-group">
                 <label class="input-label">Что произошло:</label>
-                <textarea class="textarea-input" id="descInput" placeholder="Например: Работник передвигался по территории объекта без каски"></textarea>
+                <textarea class="textarea-input" id="descInput" placeholder="Например: Работник передвигался по территории объекта без каски" oninput="handleDescInput()"></textarea>
             </div>
             
             <div class="nav-buttons">
                 <button class="nav-button back" onclick="goToStep('pagePlace')">Назад</button>
-                <button class="nav-button send" onclick="sendMessage()">Отправить</button>
+                <button class="nav-button send" id="sendButton" onclick="sendMessage()" disabled>Отправить</button>
             </div>
         </div>
+    </div>
+
+    <!-- ТУЛБАР (скрыт на странице приветствия) -->
+    <div class="bottom-toolbar" id="toolbar" style="display: none;">
+        <button class="toolbar-button active" onclick="showPage('pageMessages')">
+            <span class="toolbar-icon">💬</span>
+            <span class="toolbar-label">Сообщения</span>
+        </button>
+        
+        <button class="toolbar-button" onclick="showPage('pageReferences')">
+            <span class="toolbar-icon">📚</span>
+            <span class="toolbar-label">Памятки</span>
+        </button>
     </div>
 
     <script>
@@ -666,26 +899,72 @@
 
         // Переменные формы
         let selectedType = "";
+        let selectedGroup = "";
+        let selectedOrganization = "";
+        let currentSelectedElement = null;
         let formData = {
             organization: "",
             group: "",
             management: "",
+            contractor: "",
             shop: "",
             area: "",
             place: "",
+            transport: "",
             description: ""
         };
+
+        // Анимация логотипа при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const logoContainer = document.getElementById('logoContainer');
+                logoContainer.style.animation = 'fadeOut 0.5s ease-in-out forwards';
+                
+                setTimeout(function() {
+                    logoContainer.style.display = 'none';
+                }, 500);
+            }, 3000); // Логотип показывается 3 секунды
+        });
+
+        // Запуск приложения
+        function startApp() {
+            showPage('pageMessages');
+            document.getElementById('toolbar').style.display = 'flex';
+        }
 
         // Навигация по страницам
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
+            
+            // Обновляем активную кнопку в тулбаре
+            if (pageId === 'pageMessages' || pageId === 'pageReferences') {
+                document.querySelectorAll('.toolbar-button').forEach(btn => btn.classList.remove('active'));
+                if (pageId === 'pageMessages') {
+                    document.querySelector('.toolbar-button:nth-child(1)').classList.add('active');
+                } else {
+                    document.querySelector('.toolbar-button:nth-child(2)').classList.add('active');
+                }
+            }
+            
             window.scrollTo(0, 0);
+            updateProgress();
         }
 
         function goToStep(pageId) {
             showPage(pageId);
-            updateProgress();
+        }
+
+        function goToPreviousStep() {
+            const currentPage = document.querySelector('.page.active').id;
+            const steps = [
+                'pageOrganization', 'pageGroup', 'pageManagement', 'pageContractor', 
+                'pageShop', 'pageArea', 'pagePlace', 'pageDescription'
+            ];
+            const currentIndex = steps.indexOf(currentPage);
+            if (currentIndex > 0) {
+                goToStep(steps[currentIndex - 1]);
+            }
         }
 
         function updateProgress() {
@@ -693,26 +972,47 @@
                 'pageOrganization': 1,
                 'pageGroup': 2,
                 'pageManagement': 3,
-                'pageShop': 4,
-                'pageArea': 5,
-                'pagePlace': 6,
-                'pageDescription': 7
+                'pageContractor': 4,
+                'pageShop': 5,
+                'pageArea': 6,
+                'pagePlace': 7,
+                'pageDescription': 8
             };
             
             const currentPage = document.querySelector('.page.active').id;
             const currentStep = steps[currentPage] || 0;
             
             // Обновляем все прогресс-бары
-            for (let i = 1; i <= 7; i++) {
+            for (let i = 1; i <= 8; i++) {
                 const progress = document.getElementById(`progress${i}`);
                 const info = document.getElementById(`step${i}Info`);
                 if (progress) {
                     progress.style.width = i <= currentStep ? '100%' : '0%';
                 }
                 if (info && i === currentStep) {
-                    info.textContent = `Шаг ${i} из 7`;
+                    info.textContent = `Шаг ${i} из 8`;
                 }
             }
+        }
+
+        // Функция для выбора элемента с визуальным выделением
+        function selectElement(element, value, dataField) {
+            // Снимаем выделение со всех элементов в текущем контейнере
+            const container = element.closest('.icon-grid, .scroll-container, .circle-grid');
+            if (container) {
+                container.querySelectorAll('.icon-button, .scroll-item, .circle-button').forEach(el => {
+                    el.classList.remove('selected');
+                });
+            }
+            
+            // Выделяем новый элемент
+            element.classList.add('selected');
+            currentSelectedElement = element;
+            
+            // Сохраняем данные
+            formData[dataField] = value;
+            
+            return true;
         }
 
         // Обработчики выбора
@@ -722,52 +1022,93 @@
                 organization: "",
                 group: "",
                 management: "",
+                contractor: "",
                 shop: "",
                 area: "",
                 place: "",
+                transport: "",
                 description: ""
             };
+            // Сбрасываем все выделения
+            document.querySelectorAll('.icon-button, .scroll-item, .circle-button').forEach(el => {
+                el.classList.remove('selected');
+            });
+            document.querySelectorAll('input[type="text"], textarea').forEach(field => field.value = '');
+            document.getElementById('transportFields').style.display = 'none';
+            document.getElementById('shopInputGroup').style.display = 'none';
+            document.getElementById('shopContainer').innerHTML = '';
+            currentSelectedElement = null;
+            
+            // Сбрасываем состояния кнопок
+            document.getElementById('contractorNext').disabled = true;
+            document.getElementById('shopNext').disabled = true;
+            document.getElementById('placeNext').disabled = true;
+            document.getElementById('sendButton').disabled = true;
+            
             goToStep('pageOrganization');
         }
 
+        function cancelSteps() {
+            showPage('pageMessages');
+        }
+
         function selectOrganization(org) {
-            formData.organization = org;
-            if (org === 'Подрядная организация') {
-                // Пропускаем выбор группы и управления для подрядных
-                formData.group = "";
-                formData.management = "";
-                formData.shop = "";
-                goToStep('pageArea');
-            } else {
-                goToStep('pageGroup');
+            const elements = document.querySelectorAll('#pageOrganization .icon-button');
+            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(org));
+            
+            if (selectElement(element, org, 'organization')) {
+                selectedOrganization = org;
+                
+                if (selectedOrganization === "Подрядная организация") {
+                    goToStep('pageContractor');
+                } else {
+                    goToStep('pageGroup');
+                }
             }
         }
 
         function selectGroup(group) {
-            formData.group = group;
-            if (group === 'ОДЦ') {
-                // Для ОДЦ пропускаем выбор цеха
-                formData.management = "ОДЦ";
-                formData.shop = "";
-                goToStep('pageArea');
-            } else {
-                goToStep('pageManagement');
+            const elements = document.querySelectorAll('#pageGroup .icon-button');
+            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(group));
+            
+            if (selectElement(element, group, 'group')) {
+                selectedGroup = group;
+                
+                if (selectedGroup === "ОДЦ") {
+                    // Для ОДЦ пропускаем выбор управления и цеха
+                    formData.management = "ОДЦ";
+                    formData.shop = "";
+                    goToStep('pageArea');
+                } else {
+                    goToStep('pageManagement');
+                }
             }
         }
 
         function selectManagement(management) {
-            formData.management = management;
+            const elements = document.querySelectorAll('#pageManagement .scroll-item');
+            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(management));
             
-            if (management === 'Нет в списке' || management === 'Не знаю') {
-                formData.shop = management;
-                goToStep('pageArea');
-            } else if (structures[management]) {
-                showShops(structures[management]);
-                goToStep('pageShop');
-            } else {
-                formData.shop = "";
-                goToStep('pageArea');
+            if (selectElement(element, management, 'management')) {
+                
+                if (management === "Нет в списке" || management === "Не знаю") {
+                    formData.shop = management;
+                    goToStep('pageArea');
+                } else if (structures[management]) {
+                    showShops(structures[management]);
+                    goToStep('pageShop');
+                } else {
+                    formData.shop = "";
+                    goToStep('pageArea');
+                }
             }
+        }
+
+        function handleContractorInput() {
+            const contractorValue = document.getElementById('contractorInput').value.trim();
+            formData.contractor = contractorValue;
+            const nextButton = document.getElementById('contractorNext');
+            nextButton.disabled = !contractorValue;
         }
 
         function showShops(shops) {
@@ -779,8 +1120,8 @@
                 const button = document.createElement('div');
                 button.className = 'icon-button';
                 button.onclick = () => {
-                    formData.shop = shop;
-                    goToStep('pageArea');
+                    selectElement(button, shop, 'shop');
+                    document.getElementById('shopNext').disabled = false;
                 };
                 button.innerHTML = `
                     <span class="icon">🏗️</span>
@@ -788,16 +1129,81 @@
                 `;
                 grid.appendChild(button);
             });
+            
+            // Добавляем опцию для ручного ввода
+            const manualButton = document.createElement('div');
+            manualButton.className = 'icon-button';
+            manualButton.onclick = () => {
+                selectElement(manualButton, 'manual', 'shop');
+                document.getElementById('shopInputGroup').style.display = 'block';
+                document.getElementById('shopNext').disabled = true;
+            };
+            manualButton.innerHTML = `
+                <span class="icon">✏️</span>
+                <span class="text">Ввести вручную</span>
+            `;
+            grid.appendChild(manualButton);
+        }
+
+        function handleShopInput() {
+            const shopValue = document.getElementById('shopManualInput').value.trim();
+            formData.shop = shopValue;
+            document.getElementById('shopNext').disabled = !shopValue;
         }
 
         function selectArea(area) {
-            formData.area = area;
-            goToStep('pagePlace');
+            const elements = document.querySelectorAll('#pageArea .circle-button');
+            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(area.split(' ')[0]));
+            
+            if (selectElement(element, area, 'area')) {
+                // Настраиваем поля в зависимости от выбранной области
+                const placeLabel = document.getElementById('placeLabel');
+                const placeInput = document.getElementById('placeInput');
+                const placeSubtitle = document.getElementById('placeSubtitle');
+                const transportFields = document.getElementById('transportFields');
+                
+                if (selectedGroup === "ОДЦ") {
+                    placeLabel.textContent = "Место нарушения:";
+                    placeInput.placeholder = "Например: 4 этаж:лестница или территория ОДЦ";
+                    placeSubtitle.textContent = "Укажите где произошло нарушение";
+                } else {
+                    placeLabel.textContent = "Объект/место нарушения:";
+                    placeInput.placeholder = "Например: УПН Алакаевская, здание операторной";
+                    placeSubtitle.textContent = "Укажите где произошло нарушение";
+                }
+                
+                // Показываем дополнительные поля для транспортной безопасности
+                if (area === "Транспортная безопасность") {
+                    transportFields.style.display = 'block';
+                } else {
+                    transportFields.style.display = 'none';
+                }
+                
+                setTimeout(() => goToStep('pagePlace'), 300);
+            }
+        }
+
+        function handlePlaceInput() {
+            const placeValue = document.getElementById('placeInput').value.trim();
+            formData.place = placeValue;
+            document.getElementById('placeNext').disabled = !placeValue;
+        }
+
+        function handleTransportInput() {
+            const transportValue = document.getElementById('transportInput').value.trim();
+            formData.transport = transportValue;
+        }
+
+        function handleDescInput() {
+            const descValue = document.getElementById('descInput').value.trim();
+            formData.description = descValue;
+            document.getElementById('sendButton').disabled = !descValue;
         }
 
         // Отправка сообщения
         function sendMessage() {
             formData.place = document.getElementById('placeInput').value.trim();
+            formData.transport = document.getElementById('transportInput').value.trim();
             formData.description = document.getElementById('descInput').value.trim();
             
             if (!formData.description) {
@@ -813,13 +1219,23 @@
                 if (formData.group) message += `Группа: ${formData.group}\n`;
                 if (formData.management) message += `Управление: ${formData.management}\n`;
                 if (formData.shop) message += `Цех/участок: ${formData.shop}\n`;
-            } else {
-                // Для подрядных организаций
-                if (formData.management) message += `Управление: ${formData.management}\n`;
+            } else if (formData.organization === 'Подрядная организация') {
+                if (formData.contractor) message += `Наименование подрядной организации: ${formData.contractor}\n`;
             }
             
             message += `Область нарушения: ${formData.area}\n`;
-            if (formData.place) message += `Место: ${formData.place}\n`;
+            
+            // Для ОДЦ указываем место только если это не транспортная безопасность
+            if (formData.group === "ОДЦ" && formData.area !== "Транспортная безопасность" && formData.place) {
+                message += `Место нарушения: ${formData.place}\n`;
+            } else if (formData.place) {
+                message += `Объект/место: ${formData.place}\n`;
+            }
+            
+            if (formData.area === "Транспортная безопасность" && formData.transport) {
+                message += `Марка/гос.номер: ${formData.transport}\n`;
+            }
+            
             message += `\nОписание:\n${formData.description}`;
 
             // Отправка
@@ -832,7 +1248,7 @@
             }
             
             alert('Сообщение подготовлено для отправки!');
-            showPage('pageWelcome');
+            showPage('pageMessages');
         }
 
         // Простые функции
@@ -840,35 +1256,20 @@
             window.open('tel:+79371809021');
         }
 
-        // PWA функциональность
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            setTimeout(() => {
-                if (deferredPrompt) document.getElementById('installPrompt').style.display = 'block';
-            }, 3000);
-        });
-
-        function installApp() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => {
-                    deferredPrompt = null;
-                    document.getElementById('installPrompt').style.display = 'none';
-                });
-            }
+        function openRules() {
+            alert('Открываются золотые правила безопасности');
         }
 
-        function dismissPrompt() {
-            document.getElementById('installPrompt').style.display = 'none';
+        function openFirstAid() {
+            alert('Открывается памятка первой помощи');
         }
 
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/pbotos-app/sw.js')
-                    .catch(error => console.log('SW error:', error));
-            });
+        function openFireSafety() {
+            alert('Открывается памятка по пожарной безопасности');
+        }
+
+        function openElectricalSafety() {
+            alert('Открывается памятка по электробезопасности');
         }
     </script>
 </body>
