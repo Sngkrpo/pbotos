@@ -1,10 +1,8 @@
-const CACHE_NAME = 'pbotos-app-v1.0';
+const CACHE_NAME = 'pbotos-v1';
 const urlsToCache = [
-  '/pbotos-app/',
-  '/pbotos-app/index.html',
-  '/pbotos-app/manifest.json',
-  '/pbotos-app/icon-192.png',
-  '/pbotos-app/icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json'
 ];
 
 self.addEventListener('install', function(event) {
@@ -24,6 +22,7 @@ self.addEventListener('fetch', function(event) {
           return response;
         }
         return fetch(event.request);
-      })
+      }
+    )
   );
 });
