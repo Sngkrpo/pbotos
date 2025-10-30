@@ -76,32 +76,21 @@
         }
 
         .logo {
-            font-size: 5rem;
+            width: 200px;
+            height: 200px;
             margin-bottom: 20px;
             animation: logoPulse 2s ease-in-out infinite;
         }
 
-        .logo-text {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ffd200;
-            margin-bottom: 10px;
-        }
-
-        .logo-subtext {
-            font-size: 1.2rem;
-            color: #ccc;
-            opacity: 0;
-            animation: fadeInDelayed 0.5s ease-in-out 1s forwards;
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         @keyframes logoPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
-        }
-
-        @keyframes fadeInDelayed {
-            to { opacity: 1; }
         }
 
         @keyframes fadeOut {
@@ -146,7 +135,14 @@
         }
 
         .big-button .icon {
-            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+        }
+
+        .big-button .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* ИКОНОЧНЫЕ КНОПКИ */
@@ -178,8 +174,15 @@
         }
 
         .icon-button .icon {
-            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
             margin-bottom: 5px;
+        }
+
+        .icon-button .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .icon-button .text {
@@ -230,8 +233,15 @@
         }
 
         .scroll-item .icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 8px;
+        }
+
+        .scroll-item .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .scroll-item .text {
@@ -273,8 +283,15 @@
         }
 
         .circle-button .icon {
-            font-size: 2rem;
+            width: 40px;
+            height: 40px;
             margin-bottom: 5px;
+        }
+
+        .circle-button .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .circle-button .text {
@@ -283,7 +300,19 @@
             font-weight: 500;
         }
 
-        /* ПОЛЯ ВВОДА */
+        /* ТУЛБАР ИКОНКИ */
+        .toolbar-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .toolbar-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ОСТАЛЬНЫЕ СТИЛИ */
         .input-group {
             margin-bottom: 25px;
         }
@@ -316,7 +345,6 @@
             border-color: #ffd200;
         }
 
-        /* КНОПКИ НАВИГАЦИИ */
         .nav-buttons {
             display: flex;
             gap: 15px;
@@ -365,7 +393,6 @@
             transform: translateY(-2px);
         }
 
-        /* ПРОГРЕСС БАР */
         .progress-bar {
             width: 100%;
             height: 6px;
@@ -389,7 +416,6 @@
             margin-bottom: 10px;
         }
 
-        /* ТУЛБАР */
         .bottom-toolbar {
             position: fixed;
             bottom: 0;
@@ -431,11 +457,6 @@
             background: rgba(255, 210, 0, 0.05);
         }
 
-        .toolbar-icon {
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
         .toolbar-button.active .toolbar-icon {
             transform: scale(1.1);
         }
@@ -445,7 +466,6 @@
             font-weight: 500;
         }
 
-        /* ДОПОЛНИТЕЛЬНЫЕ ПОЛЯ */
         .extra-fields {
             margin-top: 20px;
             padding: 15px;
@@ -471,15 +491,8 @@
             }
             
             .logo {
-                font-size: 4rem;
-            }
-            
-            .logo-text {
-                font-size: 1.7rem;
-            }
-            
-            .logo-subtext {
-                font-size: 1rem;
+                width: 150px;
+                height: 150px;
             }
             
             .icon-grid {
@@ -497,9 +510,19 @@
                 height: 90px;
             }
             
+            .circle-button .icon {
+                width: 35px;
+                height: 35px;
+            }
+            
             .big-button {
                 padding: 20px;
                 font-size: 1rem;
+            }
+            
+            .big-button .icon {
+                width: 35px;
+                height: 35px;
             }
             
             .bottom-toolbar {
@@ -511,7 +534,8 @@
             }
             
             .toolbar-icon {
-                font-size: 1.3rem;
+                width: 20px;
+                height: 20px;
             }
             
             .toolbar-label {
@@ -525,14 +549,16 @@
         <!-- СТРАНИЦА 1: ПРИВЕТСТВИЕ -->
         <div id="pageWelcome" class="page active">
             <div class="logo-container" id="logoContainer">
-                <div class="logo">🚨</div>
-                <div class="logo-text">ПБОТОС</div>
-                <div class="logo-subtext">Система оперативного сообщения о нарушениях безопасности</div>
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="ПБОТОС">
+                </div>
             </div>
             
             <div class="button-grid">
                 <button class="big-button" onclick="startApp()">
-                    <span class="icon">📝</span>
+                    <span class="icon">
+                        <img src="assets/images/start-icon.png" alt="Начать">
+                    </span>
                     НАЧАТЬ
                 </button>
             </div>
@@ -547,22 +573,30 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="makeCall()">
-                    <span class="icon">📞</span>
+                    <span class="icon">
+                        <img src="assets/images/call-icon.png" alt="Позвонить">
+                    </span>
                     <span class="text">Позвонить</span>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('sms')">
-                    <span class="icon">💬</span>
+                    <span class="icon">
+                        <img src="assets/images/sms-icon.png" alt="SMS">
+                    </span>
                     <span class="text">SMS</span>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('wa')">
-                    <span class="icon">💚</span>
+                    <span class="icon">
+                        <img src="assets/images/wa-icon.png" alt="WhatsApp">
+                    </span>
                     <span class="text">WhatsApp</span>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('tg')">
-                    <span class="icon">✈️</span>
+                    <span class="icon">
+                        <img src="assets/images/tg-icon.png" alt="Telegram">
+                    </span>
                     <span class="text">Telegram</span>
                 </div>
             </div>
@@ -577,22 +611,30 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="openRules()">
-                    <span class="icon">📚</span>
+                    <span class="icon">
+                        <img src="assets/images/rules-icon.png" alt="Золотые правила">
+                    </span>
                     <span class="text">Золотые правила</span>
                 </div>
                 
                 <div class="icon-button" onclick="openFirstAid()">
-                    <span class="icon">🏥</span>
+                    <span class="icon">
+                        <img src="assets/images/firstaid-icon.png" alt="Первая помощь">
+                    </span>
                     <span class="text">Первая помощь</span>
                 </div>
                 
                 <div class="icon-button" onclick="openFireSafety()">
-                    <span class="icon">🔥</span>
+                    <span class="icon">
+                        <img src="assets/images/fire-icon.png" alt="Пожарная безопасность">
+                    </span>
                     <span class="text">Пожарная безопасность</span>
                 </div>
                 
                 <div class="icon-button" onclick="openElectricalSafety()">
-                    <span class="icon">⚡</span>
+                    <span class="icon">
+                        <img src="assets/images/electro-icon.png" alt="Электробезопасность">
+                    </span>
                     <span class="text">Электробезопасность</span>
                 </div>
             </div>
@@ -612,12 +654,16 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="selectOrganization('АО «Самаранефтегаз»')">
-                    <span class="icon">🏢</span>
+                    <span class="icon">
+                        <img src="assets/images/company-icon.png" alt="АО Самаранефтегаз">
+                    </span>
                     <span class="text">АО «Самаранефтегаз»</span>
                 </div>
                 
                 <div class="icon-button" onclick="selectOrganization('Подрядная организация')">
-                    <span class="icon">👷</span>
+                    <span class="icon">
+                        <img src="assets/images/contractor-icon.png" alt="Подрядная организация">
+                    </span>
                     <span class="text">Подрядная организация</span>
                 </div>
             </div>
@@ -638,22 +684,30 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="selectGroup('Южная')">
-                    <span class="icon">🧭</span>
+                    <span class="icon">
+                        <img src="assets/images/south-icon.png" alt="Южная группа">
+                    </span>
                     <span class="text">Южная группа</span>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('Центральная')">
-                    <span class="icon">🎯</span>
+                    <span class="icon">
+                        <img src="assets/images/center-icon.png" alt="Центральная группа">
+                    </span>
                     <span class="text">Центральная группа</span>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('Северная')">
-                    <span class="icon">🧊</span>
+                    <span class="icon">
+                        <img src="assets/images/north-icon.png" alt="Северная группа">
+                    </span>
                     <span class="text">Северная группа</span>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('ОДЦ')">
-                    <span class="icon">🏛️</span>
+                    <span class="icon">
+                        <img src="assets/images/odc-icon.png" alt="ОДЦ">
+                    </span>
                     <span class="text">ОДЦ</span>
                 </div>
             </div>
@@ -674,52 +728,72 @@
             
             <div class="scroll-container">
                 <div class="scroll-item" onclick="selectManagement('УДНГ')">
-                    <span class="icon">🛢️</span>
+                    <span class="icon">
+                        <img src="assets/images/udng-icon.png" alt="УДНГ">
+                    </span>
                     <span class="text">УДНГ</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППН')">
-                    <span class="icon">⛽</span>
+                    <span class="icon">
+                        <img src="assets/images/uppn-icon.png" alt="УППН">
+                    </span>
                     <span class="text">УППН</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППД')">
-                    <span class="icon">🔧</span>
+                    <span class="icon">
+                        <img src="assets/images/uppd-icon.png" alt="УППД">
+                    </span>
                     <span class="text">УППД</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УПКГ')">
-                    <span class="icon">🏭</span>
+                    <span class="icon">
+                        <img src="assets/images/upkg-icon.png" alt="УПКГ">
+                    </span>
                     <span class="text">УПКГ</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УЭТ')">
-                    <span class="icon">⚡</span>
+                    <span class="icon">
+                        <img src="assets/images/uet-icon.png" alt="УЭТ">
+                    </span>
                     <span class="text">УЭТ</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('ПСК')">
-                    <span class="icon">🔨</span>
+                    <span class="icon">
+                        <img src="assets/images/psk-icon.png" alt="ПСК">
+                    </span>
                     <span class="text">ПСК</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УКК')">
-                    <span class="icon">🧪</span>
+                    <span class="icon">
+                        <img src="assets/images/ukk-icon.png" alt="УКК">
+                    </span>
                     <span class="text">УКК</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Блок Энергетика')">
-                    <span class="icon">💡</span>
+                    <span class="icon">
+                        <img src="assets/images/energy-icon.png" alt="Энергетика">
+                    </span>
                     <span class="text">Энергетика</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Нет в списке')">
-                    <span class="icon">❓</span>
+                    <span class="icon">
+                        <img src="assets/images/unknown-icon.png" alt="Нет в списке">
+                    </span>
                     <span class="text">Нет в списке</span>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Не знаю')">
-                    <span class="icon">🤷</span>
+                    <span class="icon">
+                        <img src="assets/images/dontknow-icon.png" alt="Не знаю">
+                    </span>
                     <span class="text">Не знаю</span>
                 </div>
             </div>
@@ -783,37 +857,51 @@
             
             <div class="circle-grid">
                 <div class="circle-button" onclick="selectArea('СИЗ')">
-                    <span class="icon">🛡️</span>
+                    <span class="icon">
+                        <img src="assets/images/siz-icon.png" alt="СИЗ">
+                    </span>
                     <span class="text">СИЗ</span>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Инструктаж')">
-                    <span class="icon">📋</span>
+                    <span class="icon">
+                        <img src="assets/images/instruction-icon.png" alt="Инструктаж">
+                    </span>
                     <span class="text">Инструктаж</span>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Транспортная безопасность')">
-                    <span class="icon">🚗</span>
+                    <span class="icon">
+                        <img src="assets/images/transport-icon.png" alt="Транспорт">
+                    </span>
                     <span class="text">Транспорт</span>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Работы повышенной опасности')">
-                    <span class="icon">⚠️</span>
+                    <span class="icon">
+                        <img src="assets/images/danger-icon.png" alt="Опасные работы">
+                    </span>
                     <span class="text">Опасные работы</span>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Пожарная безопасность')">
-                    <span class="icon">🔥</span>
+                    <span class="icon">
+                        <img src="assets/images/fire-safety-icon.png" alt="Пожарная безопасность">
+                    </span>
                     <span class="text">Пожарная безопасность</span>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Передвижение по лестнице')">
-                    <span class="icon">📶</span>
+                    <span class="icon">
+                        <img src="assets/images/stairs-icon.png" alt="Лестницы">
+                    </span>
                     <span class="text">Лестницы</span>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Электробезопасность')">
-                    <span class="icon">⚡</span>
+                    <span class="icon">
+                        <img src="assets/images/electro-safety-icon.png" alt="Электричество">
+                    </span>
                     <span class="text">Электричество</span>
                 </div>
             </div>
@@ -871,15 +959,19 @@
         </div>
     </div>
 
-    <!-- ТУЛБАР (скрыт на странице приветствия) -->
+    <!-- ТУЛБАР -->
     <div class="bottom-toolbar" id="toolbar" style="display: none;">
         <button class="toolbar-button active" onclick="showPage('pageMessages')">
-            <span class="toolbar-icon">💬</span>
+            <span class="toolbar-icon">
+                <img src="assets/images/messages-icon.png" alt="Сообщения">
+            </span>
             <span class="toolbar-label">Сообщения</span>
         </button>
         
         <button class="toolbar-button" onclick="showPage('pageReferences')">
-            <span class="toolbar-icon">📚</span>
+            <span class="toolbar-icon">
+                <img src="assets/images/references-icon.png" alt="Памятки">
+            </span>
             <span class="toolbar-label">Памятки</span>
         </button>
     </div>
@@ -1124,7 +1216,9 @@
                     document.getElementById('shopNext').disabled = false;
                 };
                 button.innerHTML = `
-                    <span class="icon">🏗️</span>
+                    <span class="icon">
+                        <img src="assets/images/shop-icon.png" alt="${shop}">
+                    </span>
                     <span class="text">${shop}</span>
                 `;
                 grid.appendChild(button);
@@ -1139,7 +1233,9 @@
                 document.getElementById('shopNext').disabled = true;
             };
             manualButton.innerHTML = `
-                <span class="icon">✏️</span>
+                <span class="icon">
+                    <img src="assets/images/manual-icon.png" alt="Ввести вручную">
+                </span>
                 <span class="text">Ввести вручную</span>
             `;
             grid.appendChild(manualButton);
