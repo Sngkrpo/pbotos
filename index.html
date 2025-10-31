@@ -213,8 +213,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 0 0 auto;
-            width: 140px;
-            height: 120px;
+            width: 250px;
+            height: 250px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -234,20 +234,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 20px;
         }
 
         .scroll-item .button-image img {
-            width: 50px;
-            height: 50px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
-            margin-bottom: 5px;
-        }
-
-        .scroll-item .text {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: white;
         }
 
         .circle-grid {
@@ -416,7 +409,7 @@
 
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, #007bff, #00b3ff);
+            background: linear-gradient(90deg, #ffd200, #ffed4e);
             width: 0%;
             transition: width 0.4s ease;
         }
@@ -501,6 +494,16 @@
             .scroll-container {
                 padding: 10px 15px 30px 15px;
             }
+            
+            .scroll-item {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .scroll-item .button-image img {
+                width: 100px;
+                height: 100px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -552,13 +555,13 @@
             }
             
             .scroll-item {
-                width: 130px;
-                height: 110px;
+                width: 180px;
+                height: 180px;
             }
             
             .scroll-item .button-image img {
-                width: 45px;
-                height: 45px;
+                width: 80px;
+                height: 80px;
             }
             
             .bottom-toolbar {
@@ -607,8 +610,13 @@
             }
             
             .scroll-item {
-                width: 120px;
-                height: 100px;
+                width: 160px;
+                height: 160px;
+            }
+            
+            .scroll-item .button-image img {
+                width: 70px;
+                height: 70px;
             }
         }
     </style>
@@ -779,70 +787,60 @@
                 <div class="scroll-item" onclick="selectManagement('УДНГ')">
                     <div class="button-image">
                         <img src="assets/images/udng-icon.svg" alt="УДНГ">
-                        <span class="text">УДНГ</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППН')">
                     <div class="button-image">
                         <img src="assets/images/uppn-icon.svg" alt="УППН">
-                        <span class="text">УППН</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППД')">
                     <div class="button-image">
                         <img src="assets/images/uppd-icon.svg" alt="УППД">
-                        <span class="text">УППД</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УПКГ')">
                     <div class="button-image">
                         <img src="assets/images/upkg-icon.svg" alt="УПКГ">
-                        <span class="text">УПКГ</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УЭТ')">
                     <div class="button-image">
                         <img src="assets/images/uet-icon.svg" alt="УЭТ">
-                        <span class="text">УЭТ</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('ПСК')">
                     <div class="button-image">
                         <img src="assets/images/psk-icon.svg" alt="ПСК">
-                        <span class="text">ПСК</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УКК')">
                     <div class="button-image">
                         <img src="assets/images/ukk-icon.svg" alt="УКК">
-                        <span class="text">УКК</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Блок Энергетика')">
                     <div class="button-image">
                         <img src="assets/images/energy-icon.svg" alt="Энергетика">
-                        <span class="text">Энергетика</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Ввести вручную')">
                     <div class="button-image">
                         <img src="assets/images/manual-icon.svg" alt="Ввести вручную">
-                        <span class="text">Ввести вручную</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Не знаю')">
                     <div class="button-image">
                         <img src="assets/images/dontknow-icon.svg" alt="Не знаю">
-                        <span class="text">Не знаю</span>
                     </div>
                 </div>
             </div>
@@ -1080,7 +1078,7 @@
             
             scrollContainer.addEventListener('scroll', function() {
                 const scrollPos = scrollContainer.scrollLeft;
-                const itemWidth = 140 + 15;
+                const itemWidth = 250 + 15;
                 const activeDot = Math.floor(scrollPos / (itemWidth * 3));
                 
                 dotsContainer.querySelectorAll('.scroll-dot').forEach((dot, index) => {
@@ -1236,7 +1234,7 @@
 
         function selectManagement(management) {
             const elements = document.querySelectorAll('#pageManagement .scroll-item');
-            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(management));
+            const element = Array.from(elements).find(el => el.querySelector('img').alt.includes(management));
             
             if (selectElement(element, management, 'management')) {
                 formData.management = management;
