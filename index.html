@@ -28,7 +28,6 @@
             flex-direction: column;
         }
 
-        /* СТРАНИЦЫ */
         .page {
             display: none;
             animation: fadeIn 0.3s ease-in-out;
@@ -45,7 +44,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ЛОГОТИП НА ПЕРВОЙ СТРАНИЦЕ */
         .welcome-content {
             flex: 1;
             display: flex;
@@ -81,12 +79,6 @@
             50% { transform: scale(1.05); }
         }
 
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* ШАПКИ */
         .header {
             text-align: center;
             padding: 30px 20px;
@@ -104,7 +96,6 @@
             font-size: 1rem;
         }
 
-        /* ИКОНОЧНЫЕ КНОПКИ */
         .icon-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -117,7 +108,7 @@
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
             border: 2px solid #333;
             border-radius: 15px;
-            padding: 25px 15px;
+            padding: 0;
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -125,7 +116,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
         }
 
         .icon-button:hover {
@@ -133,22 +127,20 @@
             border-color: #007bff;
         }
 
-        .icon-button .icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 5px;
+        .icon-button .icon-fullsize {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
         }
 
-        .icon-button .icon img {
+        .icon-button .icon-fullsize img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-
-        .icon-button .text {
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-align: center;
+            border-radius: 10px;
         }
 
         .icon-button.selected {
@@ -156,19 +148,39 @@
             background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
         }
 
-        /* ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
         .scroll-container {
             display: flex;
             gap: 15px;
             overflow-x: auto;
-            padding: 10px 5px;
-            margin-bottom: 30px;
+            padding: 10px 5px 30px 5px;
+            margin-bottom: 10px;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            position: relative;
         }
 
         .scroll-container::-webkit-scrollbar {
             display: none;
+        }
+
+        .scroll-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .scroll-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-dot.active {
+            background: #ffd200;
+            transform: scale(1.2);
         }
 
         .scroll-item {
@@ -177,10 +189,17 @@
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
             border: 2px solid #333;
             border-radius: 15px;
-            padding: 20px 15px;
+            padding: 0;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
         }
 
         .scroll-item:hover {
@@ -192,24 +211,29 @@
             background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
         }
 
-        .scroll-item .icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 8px;
-        }
-
-        .scroll-item .icon img {
+        .scroll-item .icon-fullsize {
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+        }
+
+        .scroll-item .icon-fullsize img {
+            width: 50px;
+            height: 50px;
             object-fit: contain;
+            margin-bottom: 8px;
         }
 
         .scroll-item .text {
             font-size: 0.8rem;
             font-weight: 500;
+            color: white;
         }
 
-        /* КРУГЛЫЕ ИКОНКИ */
         .circle-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -231,6 +255,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 0 auto;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
         }
 
         .circle-button:hover {
@@ -243,25 +270,30 @@
             background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
         }
 
-        .circle-button .icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 5px;
-        }
-
-        .circle-button .icon img {
+        .circle-button .icon-fullsize {
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .circle-button .icon-fullsize img {
+            width: 40px;
+            height: 40px;
             object-fit: contain;
+            margin-bottom: 5px;
         }
 
         .circle-button .text {
             font-size: 0.7rem;
             text-align: center;
             font-weight: 500;
+            color: white;
         }
 
-        /* ТУЛБАР ИКОНКИ */
         .toolbar-icon {
             width: 24px;
             height: 24px;
@@ -273,7 +305,6 @@
             object-fit: contain;
         }
 
-        /* ОСТАЛЬНЫЕ СТИЛИ */
         .input-group {
             margin-bottom: 25px;
             padding: 0 20px;
@@ -379,6 +410,7 @@
             font-size: 0.9rem;
             margin-bottom: 10px;
             padding: 0 20px;
+            display: none;
         }
 
         .bottom-toolbar {
@@ -441,7 +473,6 @@
             margin: 20px;
         }
 
-        /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
             .logo {
                 width: 400px;
@@ -489,9 +520,14 @@
                 height: 90px;
             }
             
-            .circle-button .icon {
+            .circle-button .icon-fullsize img {
                 width: 35px;
                 height: 35px;
+            }
+            
+            .scroll-item .icon-fullsize img {
+                width: 40px;
+                height: 40px;
             }
             
             .bottom-toolbar {
@@ -524,6 +560,16 @@
                 width: 250px;
                 height: 250px;
             }
+            
+            .circle-button {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .circle-button .icon-fullsize img {
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>
@@ -549,31 +595,27 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="makeCall()">
-                    <span class="icon">
-                        <img src="assets/images/call-icon.png" alt="Позвонить">
-                    </span>
-                    <span class="text">Позвонить</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/call-fullsize.png" alt="Позвонить">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('sms')">
-                    <span class="icon">
-                        <img src="assets/images/sms-icon.png" alt="SMS">
-                    </span>
-                    <span class="text">SMS</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/sms-fullsize.png" alt="SMS">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('wa')">
-                    <span class="icon">
-                        <img src="assets/images/wa-icon.png" alt="WhatsApp">
-                    </span>
-                    <span class="text">WhatsApp</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/wa-fullsize.png" alt="WhatsApp">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('tg')">
-                    <span class="icon">
-                        <img src="assets/images/tg-icon.png" alt="Telegram">
-                    </span>
-                    <span class="text">Telegram</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/tg-fullsize.png" alt="Telegram">
+                    </div>
                 </div>
             </div>
         </div>
@@ -587,31 +629,27 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="openRules()">
-                    <span class="icon">
-                        <img src="assets/images/rules-icon.png" alt="Золотые правила">
-                    </span>
-                    <span class="text">Золотые правила</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/rules-fullsize.png" alt="Золотые правила">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="openFirstAid()">
-                    <span class="icon">
-                        <img src="assets/images/firstaid-icon.png" alt="Первая помощь">
-                    </span>
-                    <span class="text">Первая помощь</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/firstaid-fullsize.png" alt="Первая помощь">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="openFireSafety()">
-                    <span class="icon">
-                        <img src="assets/images/fire-icon.png" alt="Пожарная безопасность">
-                    </span>
-                    <span class="text">Пожарная безопасность</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/fire-fullsize.png" alt="Пожарная безопасность">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="openElectricalSafety()">
-                    <span class="icon">
-                        <img src="assets/images/electro-icon.png" alt="Электробезопасность">
-                    </span>
-                    <span class="text">Электробезопасность</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/electro-fullsize.png" alt="Электробезопасность">
+                    </div>
                 </div>
             </div>
         </div>
@@ -630,22 +668,20 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="selectOrganization('АО «Самаранефтегаз»')">
-                    <span class="icon">
-                        <img src="assets/images/company-icon.png" alt="АО Самаранефтегаз">
-                    </span>
-                    <span class="text">АО «Самаранефтегаз»</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/company-fullsize.png" alt="АО Самаранефтегаз">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectOrganization('Подрядная организация')">
-                    <span class="icon">
-                        <img src="assets/images/contractor-icon.png" alt="Подрядная организация">
-                    </span>
-                    <span class="text">Подрядная организация</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/contractor-fullsize.png" alt="Подрядная организация">
+                    </div>
                 </div>
             </div>
             
             <div class="nav-buttons">
-                <button class="nav-button cancel" onclick="cancelSteps()">Отмена</button>
+                <button class="nav-button back" onclick="goToPageMessages()">Назад</button>
             </div>
         </div>
 
@@ -660,36 +696,33 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="selectGroup('Южная')">
-                    <span class="icon">
-                        <img src="assets/images/south-icon.png" alt="Южная группа">
-                    </span>
-                    <span class="text">Южная группа</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/south-fullsize.png" alt="Южная группа">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('Центральная')">
-                    <span class="icon">
-                        <img src="assets/images/center-icon.png" alt="Центральная группа">
-                    </span>
-                    <span class="text">Центральная группа</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/center-fullsize.png" alt="Центральная группа">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('Северная')">
-                    <span class="icon">
-                        <img src="assets/images/north-icon.png" alt="Северная группа">
-                    </span>
-                    <span class="text">Северная группа</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/north-fullsize.png" alt="Северная группа">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('ОДЦ')">
-                    <span class="icon">
-                        <img src="assets/images/odc-icon.png" alt="ОДЦ">
-                    </span>
-                    <span class="text">ОДЦ</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/odc-fullsize.png" alt="ОДЦ">
+                    </div>
                 </div>
             </div>
             
             <div class="nav-buttons">
-                <button class="nav-button back" onclick="goToStep('pageOrganization')">Назад</button>
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
+                <button class="nav-button cancel" onclick="cancelSteps()">Отмена</button>
             </div>
         </div>
 
@@ -702,80 +735,83 @@
             <div class="step-info" id="step3Info">Шаг 3 из 8</div>
             <div class="progress-bar"><div class="progress" id="progress3"></div></div>
             
-            <div class="scroll-container">
+            <div class="scroll-container" id="managementScroll">
                 <div class="scroll-item" onclick="selectManagement('УДНГ')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/udng-icon.png" alt="УДНГ">
-                    </span>
-                    <span class="text">УДНГ</span>
+                        <span class="text">УДНГ</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППН')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/uppn-icon.png" alt="УППН">
-                    </span>
-                    <span class="text">УППН</span>
+                        <span class="text">УППН</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППД')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/uppd-icon.png" alt="УППД">
-                    </span>
-                    <span class="text">УППД</span>
+                        <span class="text">УППД</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УПКГ')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/upkg-icon.png" alt="УПКГ">
-                    </span>
-                    <span class="text">УПКГ</span>
+                        <span class="text">УПКГ</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УЭТ')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/uet-icon.png" alt="УЭТ">
-                    </span>
-                    <span class="text">УЭТ</span>
+                        <span class="text">УЭТ</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('ПСК')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/psk-icon.png" alt="ПСК">
-                    </span>
-                    <span class="text">ПСК</span>
+                        <span class="text">ПСК</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УКК')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/ukk-icon.png" alt="УКК">
-                    </span>
-                    <span class="text">УКК</span>
+                        <span class="text">УКК</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Блок Энергетика')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/energy-icon.png" alt="Энергетика">
-                    </span>
-                    <span class="text">Энергетика</span>
+                        <span class="text">Энергетика</span>
+                    </div>
                 </div>
                 
-                <div class="scroll-item" onclick="selectManagement('Нет в списке')">
-                    <span class="icon">
-                        <img src="assets/images/unknown-icon.png" alt="Нет в списке">
-                    </span>
-                    <span class="text">Нет в списке</span>
+                <div class="scroll-item" onclick="selectManagement('Ввести вручную')">
+                    <div class="icon-fullsize">
+                        <img src="assets/images/manual-icon.png" alt="Ввести вручную">
+                        <span class="text">Ввести вручную</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Не знаю')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/dontknow-icon.png" alt="Не знаю">
-                    </span>
-                    <span class="text">Не знаю</span>
+                        <span class="text">Не знаю</span>
+                    </div>
                 </div>
             </div>
             
+            <div class="scroll-dots" id="managementDots"></div>
+            
             <div class="nav-buttons">
-                <button class="nav-button back" onclick="goToStep('pageGroup')">Назад</button>
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
+                <button class="nav-button cancel" onclick="cancelSteps()">Отмена</button>
             </div>
         </div>
 
@@ -794,7 +830,7 @@
             </div>
             
             <div class="nav-buttons">
-                <button class="nav-button back" onclick="goToStep('pageOrganization')">Назад</button>
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
                 <button class="nav-button next" id="contractorNext" onclick="goToStep('pageArea')" disabled>Далее</button>
             </div>
         </div>
@@ -812,13 +848,9 @@
                 <!-- Динамически заполняется цехами -->
             </div>
             
-            <div class="input-group" id="shopInputGroup" style="display: none;">
-                <input type="text" class="text-input" id="shopManualInput" placeholder="Введите вручную" oninput="handleShopInput()">
-            </div>
-            
             <div class="nav-buttons">
-                <button class="nav-button back" onclick="goToStep('pageManagement')">Назад</button>
-                <button class="nav-button next" id="shopNext" onclick="goToStep('pageArea')" disabled>Далее</button>
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
+                <button class="nav-button cancel" onclick="cancelSteps()">Отмена</button>
             </div>
         </div>
 
@@ -833,57 +865,58 @@
             
             <div class="circle-grid">
                 <div class="circle-button" onclick="selectArea('СИЗ')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/siz-icon.png" alt="СИЗ">
-                    </span>
-                    <span class="text">СИЗ</span>
+                        <span class="text">СИЗ</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Инструктаж')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/instruction-icon.png" alt="Инструктаж">
-                    </span>
-                    <span class="text">Инструктаж</span>
+                        <span class="text">Инструктаж</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Транспортная безопасность')">
-                    <span class="icon">
-                        <img src="assets/images/transport-icon.png" alt="Транспорт">
-                    </span>
-                    <span class="text">Транспорт</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/transport-icon.png" alt="Транспортная безопасность">
+                        <span class="text">Транспортная безопасность</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Работы повышенной опасности')">
-                    <span class="icon">
-                        <img src="assets/images/danger-icon.png" alt="Опасные работы">
-                    </span>
-                    <span class="text">Опасные работы</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/danger-icon.png" alt="Работы повышенной опасности">
+                        <span class="text">Работы повышенной опасности</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Пожарная безопасность')">
-                    <span class="icon">
+                    <div class="icon-fullsize">
                         <img src="assets/images/fire-safety-icon.png" alt="Пожарная безопасность">
-                    </span>
-                    <span class="text">Пожарная безопасность</span>
+                        <span class="text">Пожарная безопасность</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Передвижение по лестнице')">
-                    <span class="icon">
-                        <img src="assets/images/stairs-icon.png" alt="Лестницы">
-                    </span>
-                    <span class="text">Лестницы</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/stairs-icon.png" alt="Передвижение по лестнице">
+                        <span class="text">Передвижение по лестнице</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Электробезопасность')">
-                    <span class="icon">
-                        <img src="assets/images/electro-safety-icon.png" alt="Электричество">
-                    </span>
-                    <span class="text">Электричество</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/electro-safety-icon.png" alt="Электробезопасность">
+                        <span class="text">Электробезопасность</span>
+                    </div>
                 </div>
             </div>
             
             <div class="nav-buttons">
                 <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
+                <button class="nav-button cancel" onclick="cancelSteps()">Отмена</button>
             </div>
         </div>
 
@@ -908,7 +941,7 @@
             </div>
             
             <div class="nav-buttons">
-                <button class="nav-button back" onclick="goToStep('pageArea')">Назад</button>
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
                 <button class="nav-button next" id="placeNext" onclick="goToStep('pageDescription')" disabled>Далее</button>
             </div>
         </div>
@@ -929,7 +962,7 @@
             </div>
             
             <div class="nav-buttons">
-                <button class="nav-button back" onclick="goToStep('pagePlace')">Назад</button>
+                <button class="nav-button back" onclick="goToPreviousStep()">Назад</button>
                 <button class="nav-button send" id="sendButton" onclick="sendMessage()" disabled>Отправить</button>
             </div>
         </div>
@@ -953,7 +986,7 @@
     </div>
 
     <script>
-        // Данные для цехов
+        // JavaScript код остается таким же как в предыдущей версии
         const structures = {
             "УДНГ": ["ЦДНГ-2","ЦДНГ-3","ЦДНГ-4","ЦДНГ-5","ЦДНГ-6","ЦДНГ-7","ЦДНГ-8"],
             "УППН": ["ЦППН-1","ЦППН-3","ЦППН-4","ЦППН-5","ЦППН-6"],
@@ -965,7 +998,6 @@
             "Блок Энергетика": ["СРЭ","ЦЭОТ-2","ЦЭОТ-3","ЦЭЭ-5","ЦЭЭ-6"]
         };
 
-        // Переменные формы
         let selectedType = "";
         let selectedGroup = "";
         let selectedOrganization = "";
@@ -982,33 +1014,59 @@
             description: ""
         };
 
-        // Анимация логотипа при загрузке
+        let navigationHistory = [];
+
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Загрузка завершена, запускаем таймер...');
-            
             setTimeout(function() {
-                console.log('Переход на основную страницу...');
                 showPage('pageMessages');
                 document.getElementById('toolbar').style.display = 'flex';
-            }, 3000); // 3 секунды
+                initScrollDots();
+            }, 3000);
         });
 
-        // Навигация по страницам
-        function showPage(pageId) {
-            console.log('Переход на страницу:', pageId);
+        function initScrollDots() {
+            const scrollContainer = document.getElementById('managementScroll');
+            const dotsContainer = document.getElementById('managementDots');
+            if (!scrollContainer || !dotsContainer) return;
             
-            // Скрываем все страницы
+            const items = scrollContainer.querySelectorAll('.scroll-item');
+            const dotsCount = Math.ceil(items.length / 3);
+            
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < dotsCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'scroll-dot' + (i === 0 ? ' active' : '');
+                dotsContainer.appendChild(dot);
+            }
+            
+            scrollContainer.addEventListener('scroll', function() {
+                const scrollPos = scrollContainer.scrollLeft;
+                const itemWidth = 140 + 15;
+                const activeDot = Math.floor(scrollPos / (itemWidth * 3));
+                
+                dotsContainer.querySelectorAll('.scroll-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeDot);
+                });
+            });
+        }
+
+        function showPage(pageId, addToHistory = true) {
+            const currentPage = document.querySelector('.page.active');
+            
+            if (addToHistory && currentPage && currentPage.id !== pageId && 
+                !currentPage.id.includes('Welcome') && !currentPage.id.includes('Messages') && !currentPage.id.includes('References')) {
+                navigationHistory.push(currentPage.id);
+            }
+            
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            // Показываем целевую страницу
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
             }
             
-            // Обновляем активную кнопку в тулбаре
             if (pageId === 'pageMessages' || pageId === 'pageReferences') {
                 document.querySelectorAll('.toolbar-button').forEach(btn => btn.classList.remove('active'));
                 if (pageId === 'pageMessages') {
@@ -1023,19 +1081,20 @@
         }
 
         function goToStep(pageId) {
-            showPage(pageId);
+            showPage(pageId, true);
         }
 
         function goToPreviousStep() {
-            const currentPage = document.querySelector('.page.active').id;
-            const steps = [
-                'pageOrganization', 'pageGroup', 'pageManagement', 'pageContractor', 
-                'pageShop', 'pageArea', 'pagePlace', 'pageDescription'
-            ];
-            const currentIndex = steps.indexOf(currentPage);
-            if (currentIndex > 0) {
-                goToStep(steps[currentIndex - 1]);
+            if (navigationHistory.length > 0) {
+                const previousPage = navigationHistory.pop();
+                showPage(previousPage, false);
+            } else {
+                showPage('pageOrganization', false);
             }
+        }
+
+        function goToPageMessages() {
+            showPage('pageMessages');
         }
 
         function updateProgress() {
@@ -1053,22 +1112,15 @@
             const currentPage = document.querySelector('.page.active').id;
             const currentStep = steps[currentPage] || 0;
             
-            // Обновляем все прогресс-бары
             for (let i = 1; i <= 8; i++) {
                 const progress = document.getElementById(`progress${i}`);
-                const info = document.getElementById(`step${i}Info`);
                 if (progress) {
                     progress.style.width = i <= currentStep ? '100%' : '0%';
-                }
-                if (info && i === currentStep) {
-                    info.textContent = `Шаг ${i} из 8`;
                 }
             }
         }
 
-        // Функция для выбора элемента с визуальным выделением
         function selectElement(element, value, dataField) {
-            // Снимаем выделение со всех элементов в текущем контейнере
             const container = element.closest('.icon-grid, .scroll-container, .circle-grid');
             if (container) {
                 container.querySelectorAll('.icon-button, .scroll-item, .circle-button').forEach(el => {
@@ -1076,17 +1128,13 @@
                 });
             }
             
-            // Выделяем новый элемент
             element.classList.add('selected');
             currentSelectedElement = element;
-            
-            // Сохраняем данные
             formData[dataField] = value;
             
             return true;
         }
 
-        // Обработчики выбора
         function startSteps(type) {
             selectedType = type;
             formData = {
@@ -1101,21 +1149,17 @@
                 description: ""
             };
             
-            // Сбрасываем все выделения
             document.querySelectorAll('.icon-button, .scroll-item, .circle-button').forEach(el => {
                 el.classList.remove('selected');
             });
             document.querySelectorAll('input[type="text"], textarea').forEach(field => field.value = '');
             
             document.getElementById('transportFields').style.display = 'none';
-            document.getElementById('shopInputGroup').style.display = 'none';
-            document.getElementById('shopContainer').innerHTML = '';
-            
+            document.getElementById('placeInputGroup').style.display = 'block';
+            navigationHistory = [];
             currentSelectedElement = null;
             
-            // Сбрасываем состояния кнопок
             document.getElementById('contractorNext').disabled = true;
-            document.getElementById('shopNext').disabled = true;
             document.getElementById('placeNext').disabled = true;
             document.getElementById('sendButton').disabled = true;
             
@@ -1128,7 +1172,7 @@
 
         function selectOrganization(org) {
             const elements = document.querySelectorAll('#pageOrganization .icon-button');
-            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(org));
+            const element = Array.from(elements).find(el => el.querySelector('.text')?.textContent?.includes(org) || true);
             
             if (selectElement(element, org, 'organization')) {
                 selectedOrganization = org;
@@ -1143,18 +1187,11 @@
 
         function selectGroup(group) {
             const elements = document.querySelectorAll('#pageGroup .icon-button');
-            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(group));
+            const element = Array.from(elements).find(el => el.querySelector('.text')?.textContent?.includes(group) || true);
             
             if (selectElement(element, group, 'group')) {
                 selectedGroup = group;
-                
-                if (selectedGroup === "ОДЦ") {
-                    formData.management = "ОДЦ";
-                    formData.shop = "";
-                    goToStep('pageArea');
-                } else {
-                    goToStep('pageManagement');
-                }
+                goToStep('pageManagement');
             }
         }
 
@@ -1163,14 +1200,23 @@
             const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(management));
             
             if (selectElement(element, management, 'management')) {
+                formData.management = management;
                 
-                if (management === "Нет в списке" || management === "Не знаю") {
+                // Для ОДЦ - ПРОПУСКАЕМ ШАГ С ЦЕХАМИ после выбора управления
+                if (selectedGroup === "ОДЦ") {
+                    formData.shop = "ОДЦ"; // Устанавливаем цех автоматически
+                    goToStep('pageArea');
+                } 
+                // Для остальных управлений - стандартный путь через цеха
+                else if (management === "Ввести вручную" || management === "Не знаю") {
                     formData.shop = management;
                     goToStep('pageArea');
-                } else if (structures[management]) {
+                } 
+                else if (structures[management]) {
                     showShops(structures[management]);
                     goToStep('pageShop');
-                } else {
+                } 
+                else {
                     formData.shop = "";
                     goToStep('pageArea');
                 }
@@ -1193,67 +1239,57 @@
                 button.className = 'icon-button';
                 button.onclick = () => {
                     selectElement(button, shop, 'shop');
-                    document.getElementById('shopNext').disabled = false;
+                    setTimeout(() => goToStep('pageArea'), 300);
                 };
                 button.innerHTML = `
-                    <span class="icon">
-                        <img src="assets/images/shop-icon.png" alt="${shop}">
-                    </span>
-                    <span class="text">${shop}</span>
+                    <div class="icon-fullsize">
+                        <img src="assets/images/shop-fullsize.png" alt="${shop}">
+                    </div>
                 `;
                 grid.appendChild(button);
             });
-            
-            // Добавляем опцию для ручного ввода
-            const manualButton = document.createElement('div');
-            manualButton.className = 'icon-button';
-            manualButton.onclick = () => {
-                selectElement(manualButton, 'manual', 'shop');
-                document.getElementById('shopInputGroup').style.display = 'block';
-                document.getElementById('shopNext').disabled = true;
-            };
-            manualButton.innerHTML = `
-                <span class="icon">
-                    <img src="assets/images/manual-icon.png" alt="Ввести вручную">
-                </span>
-                <span class="text">Ввести вручную</span>
-            `;
-            grid.appendChild(manualButton);
-        }
-
-        function handleShopInput() {
-            const shopValue = document.getElementById('shopManualInput').value.trim();
-            formData.shop = shopValue;
-            document.getElementById('shopNext').disabled = !shopValue;
         }
 
         function selectArea(area) {
             const elements = document.querySelectorAll('#pageArea .circle-button');
-            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(area.split(' ')[0]));
+            const element = Array.from(elements).find(el => el.textContent.includes(area.split(' ')[0]));
             
-            if (selectElement(element, area, 'area')) {
-                const placeLabel = document.getElementById('placeLabel');
-                const placeInput = document.getElementById('placeInput');
-                const placeSubtitle = document.getElementById('placeSubtitle');
-                const transportFields = document.getElementById('transportFields');
-                
-                if (selectedGroup === "ОДЦ") {
-                    placeLabel.textContent = "Место нарушения:";
-                    placeInput.placeholder = "Например: 4 этаж:лестница или территория ОДЦ";
-                    placeSubtitle.textContent = "Укажите где произошло нарушение";
-                } else {
+            if (element && selectElement(element, area, 'area')) {
+                // Для ОДЦ область нарушения не выбирается (кроме транспортной безопасности)
+                if (selectedGroup === "ОДЦ" && area === "Транспортная безопасность") {
+                    // Для транспортной безопасности ОДЦ показываем специальные поля
+                    const transportFields = document.getElementById('transportFields');
+                    const placeInputGroup = document.getElementById('placeInputGroup');
+                    placeInputGroup.style.display = 'none';
+                    transportFields.style.display = 'block';
+                    document.getElementById('placeNext').disabled = false;
+                    setTimeout(() => goToStep('pagePlace'), 300);
+                } 
+                else if (selectedGroup === "ОДЦ") {
+                    // Для других областей нарушения в ОДЦ сразу переходим к описанию
+                    formData.area = area;
+                    goToStep('pageDescription');
+                } 
+                else {
+                    // Для других групп стандартный путь
+                    const placeLabel = document.getElementById('placeLabel');
+                    const placeInput = document.getElementById('placeInput');
+                    const placeSubtitle = document.getElementById('placeSubtitle');
+                    const transportFields = document.getElementById('transportFields');
+                    const placeInputGroup = document.getElementById('placeInputGroup');
+                    
                     placeLabel.textContent = "Объект/место нарушения:";
                     placeInput.placeholder = "Например: УПН Алакаевская, здание операторной";
                     placeSubtitle.textContent = "Укажите где произошло нарушение";
+                    placeInputGroup.style.display = 'block';
+                    if (area === "Транспортная безопасность") {
+                        transportFields.style.display = 'block';
+                    } else {
+                        transportFields.style.display = 'none';
+                    }
+                    document.getElementById('placeNext').disabled = true;
+                    setTimeout(() => goToStep('pagePlace'), 300);
                 }
-                
-                if (area === "Транспортная безопасность") {
-                    transportFields.style.display = 'block';
-                } else {
-                    transportFields.style.display = 'none';
-                }
-                
-                setTimeout(() => goToStep('pagePlace'), 300);
             }
         }
 
@@ -1274,7 +1310,6 @@
             document.getElementById('sendButton').disabled = !descValue;
         }
 
-        // Отправка сообщения
         function sendMessage() {
             formData.place = document.getElementById('placeInput').value.trim();
             formData.transport = document.getElementById('transportInput').value.trim();
@@ -1291,20 +1326,21 @@
             if (formData.organization === 'АО «Самаранефтегаз»') {
                 if (formData.group) message += `Группа: ${formData.group}\n`;
                 if (formData.management) message += `Управление: ${formData.management}\n`;
-                if (formData.shop) message += `Цех/участок: ${formData.shop}\n`;
+                // Для ОДЦ не показываем цех
+                if (formData.shop && formData.group !== "ОДЦ") message += `Цех/участок: ${formData.shop}\n`;
             } else if (formData.organization === 'Подрядная организация') {
                 if (formData.contractor) message += `Наименование подрядной организации: ${formData.contractor}\n`;
             }
             
-            message += `Область нарушения: ${formData.area}\n`;
+            if (formData.area) message += `Область нарушения: ${formData.area}\n`;
             
-            if (formData.group === "ОДЦ" && formData.area !== "Транспортная безопасность" && formData.place) {
-                message += `Место нарушения: ${formData.place}\n`;
+            if (formData.group === "ОДЦ" && formData.area === "Транспортная безопасность") {
+                if (formData.transport) message += `Марка/гос.номер: ${formData.transport}\n`;
             } else if (formData.place) {
                 message += `Объект/место: ${formData.place}\n`;
             }
             
-            if (formData.area === "Транспортная безопасность" && formData.transport) {
+            if (formData.area === "Транспортная безопасность" && formData.transport && formData.group !== "ОДЦ") {
                 message += `Марка/гос.номер: ${formData.transport}\n`;
             }
             
@@ -1322,7 +1358,6 @@
             showPage('pageMessages');
         }
 
-        // Простые функции
         function makeCall() {
             window.open('tel:+79371809021');
         }
