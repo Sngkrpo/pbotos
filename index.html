@@ -213,8 +213,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 0 0 auto;
-            width: 300px;
-            height: 300px;
+            width: 140px;
+            height: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -234,13 +234,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         .scroll-item .button-image img {
-            width: 150px;
-            height: 150px;
+            width: 50px;
+            height: 50px;
             object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .scroll-item .text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: white;
         }
 
         .circle-grid {
@@ -409,7 +416,7 @@
 
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, #ffd200, #ffed4e);
+            background: linear-gradient(90deg, #007bff, #00b3ff);
             width: 0%;
             transition: width 0.4s ease;
         }
@@ -494,43 +501,114 @@
             .scroll-container {
                 padding: 10px 15px 30px 15px;
             }
-            
-            .scroll-item {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .scroll-item .button-image img {
-                width: 150px;
-                height: 150px;
-            }
         }
 
         @media (max-width: 480px) {
-            .icon-button {
-                min-height: 400px;
+            body {
+                padding: 0 0 80px 0;
+            }
+
+            .welcome-content {
+                padding: 20px 15px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .logo {
+                max-width: 300px;
+            }
+            
+            .icon-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 0 15px;
+            }
+            
+            .circle-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 0 15px;
+            }
+            
+            .circle-button {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .circle-button .button-image img {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .scroll-container {
+                padding: 10px 15px 30px 15px;
             }
             
             .scroll-item {
-                width: 300px;
-                height: 300px;
+                width: 130px;
+                height: 110px;
             }
             
             .scroll-item .button-image img {
-                width: 150px;
-                height: 150px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .bottom-toolbar {
+                padding: 10px 15px;
+            }
+            
+            .toolbar-button {
+                padding: 6px 12px;
+            }
+            
+            .toolbar-icon {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .toolbar-label {
+                font-size: 0.75rem;
+            }
+
+            .input-group,
+            .nav-buttons,
+            .progress-bar,
+            .step-info {
+                padding: 0 15px;
+            }
+            
+            .extra-fields {
+                margin: 20px 15px;
+                width: calc(100% - 30px);
             }
         }
 
         @media (max-width: 320px) {
-            .scroll-item {
-                width: 280px;
-                height: 280px;
+            .logo {
+                max-width: 250px;
             }
             
-            .scroll-item .button-image img {
-                width: 130px;
-                height: 130px;
+            .circle-button {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .circle-button .button-image img {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .scroll-item {
+                width: 120px;
+                height: 100px;
             }
         }
     </style>
@@ -701,60 +779,70 @@
                 <div class="scroll-item" onclick="selectManagement('УДНГ')">
                     <div class="button-image">
                         <img src="assets/images/udng-icon.svg" alt="УДНГ">
+                        <span class="text">УДНГ</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППН')">
                     <div class="button-image">
                         <img src="assets/images/uppn-icon.svg" alt="УППН">
+                        <span class="text">УППН</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППД')">
                     <div class="button-image">
                         <img src="assets/images/uppd-icon.svg" alt="УППД">
+                        <span class="text">УППД</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УПКГ')">
                     <div class="button-image">
                         <img src="assets/images/upkg-icon.svg" alt="УПКГ">
+                        <span class="text">УПКГ</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УЭТ')">
                     <div class="button-image">
                         <img src="assets/images/uet-icon.svg" alt="УЭТ">
+                        <span class="text">УЭТ</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('ПСК')">
                     <div class="button-image">
                         <img src="assets/images/psk-icon.svg" alt="ПСК">
+                        <span class="text">ПСК</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УКК')">
                     <div class="button-image">
                         <img src="assets/images/ukk-icon.svg" alt="УКК">
+                        <span class="text">УКК</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Блок Энергетика')">
                     <div class="button-image">
                         <img src="assets/images/energy-icon.svg" alt="Энергетика">
+                        <span class="text">Энергетика</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Ввести вручную')">
                     <div class="button-image">
                         <img src="assets/images/manual-icon.svg" alt="Ввести вручную">
+                        <span class="text">Ввести вручную</span>
                     </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Не знаю')">
                     <div class="button-image">
                         <img src="assets/images/dontknow-icon.svg" alt="Не знаю">
+                        <span class="text">Не знаю</span>
                     </div>
                 </div>
             </div>
@@ -981,7 +1069,7 @@
             if (!scrollContainer || !dotsContainer) return;
             
             const items = scrollContainer.querySelectorAll('.scroll-item');
-            const dotsCount = Math.ceil(items.length / 2);
+            const dotsCount = Math.ceil(items.length / 3);
             
             dotsContainer.innerHTML = '';
             for (let i = 0; i < dotsCount; i++) {
@@ -992,8 +1080,8 @@
             
             scrollContainer.addEventListener('scroll', function() {
                 const scrollPos = scrollContainer.scrollLeft;
-                const itemWidth = 300 + 15;
-                const activeDot = Math.floor(scrollPos / (itemWidth * 2));
+                const itemWidth = 140 + 15;
+                const activeDot = Math.floor(scrollPos / (itemWidth * 3));
                 
                 dotsContainer.querySelectorAll('.scroll-dot').forEach((dot, index) => {
                     dot.classList.toggle('active', index === activeDot);
@@ -1148,7 +1236,7 @@
 
         function selectManagement(management) {
             const elements = document.querySelectorAll('#pageManagement .scroll-item');
-            const element = Array.from(elements).find(el => el.querySelector('img').alt.includes(management));
+            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(management));
             
             if (selectElement(element, management, 'management')) {
                 formData.management = management;
