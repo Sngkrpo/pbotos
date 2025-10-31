@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ПБОТОС - Сообщить о нарушении</title>
     
     <style>
@@ -10,6 +10,15 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html, body {
+            background: #121212;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
         }
 
         body {
@@ -20,6 +29,7 @@
             line-height: 1.4;
             overflow-x: hidden;
             width: 100%;
+            position: relative;
         }
 
         .container {
@@ -29,6 +39,7 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            background: #121212;
         }
 
         .page {
@@ -37,6 +48,7 @@
             flex: 1;
             width: 100%;
             max-width: 100%;
+            background: #121212;
         }
 
         .page.active {
@@ -59,6 +71,7 @@
             padding: 20px;
             min-height: 100vh;
             width: 100%;
+            background: #121212;
         }
 
         .logo-container {
@@ -93,6 +106,7 @@
             padding: 30px 20px;
             margin-bottom: 30px;
             width: 100%;
+            background: #121212;
         }
 
         .header h1 {
@@ -1012,7 +1026,6 @@
     </div>
 
     <script>
-        // JavaScript код остается таким же
         const structures = {
             "УДНГ": ["ЦДНГ-2","ЦДНГ-3","ЦДНГ-4","ЦДНГ-5","ЦДНГ-6","ЦДНГ-7","ЦДНГ-8"],
             "УППН": ["ЦППН-1","ЦППН-3","ЦППН-4","ЦППН-5","ЦППН-6"],
@@ -1228,12 +1241,10 @@
             if (selectElement(element, management, 'management')) {
                 formData.management = management;
                 
-                // Для ОДЦ - ПРОПУСКАЕМ ШАГ С ЦЕХАМИ после выбора управления
                 if (selectedGroup === "ОДЦ") {
-                    formData.shop = "ОДЦ"; // Устанавливаем цех автоматически
+                    formData.shop = "ОДЦ";
                     goToStep('pageArea');
                 } 
-                // Для остальных управлений - стандартный путь через цеха
                 else if (management === "Ввести вручную" || management === "Не знаю") {
                     formData.shop = management;
                     goToStep('pageArea');
@@ -1281,9 +1292,7 @@
             const element = Array.from(elements).find(el => el.textContent.includes(area.split(' ')[0]));
             
             if (element && selectElement(element, area, 'area')) {
-                // Для ОДЦ область нарушения не выбирается (кроме транспортной безопасности)
                 if (selectedGroup === "ОДЦ" && area === "Транспортная безопасность") {
-                    // Для транспортной безопасности ОДЦ показываем специальные поля
                     const transportFields = document.getElementById('transportFields');
                     const placeInputGroup = document.getElementById('placeInputGroup');
                     placeInputGroup.style.display = 'none';
@@ -1292,12 +1301,10 @@
                     setTimeout(() => goToStep('pagePlace'), 300);
                 } 
                 else if (selectedGroup === "ОДЦ") {
-                    // Для других областей нарушения в ОДЦ сразу переходим к описанию
                     formData.area = area;
                     goToStep('pageDescription');
                 } 
                 else {
-                    // Для других групп стандартный путь
                     const placeLabel = document.getElementById('placeLabel');
                     const placeInput = document.getElementById('placeInput');
                     const placeSubtitle = document.getElementById('placeSubtitle');
@@ -1352,9 +1359,8 @@
             if (formData.organization === 'АО «Самаранефтегаз»') {
                 if (formData.group) message += `Группа: ${formData.group}\n`;
                 if (formData.management) message += `Управление: ${formData.management}\n`;
-                // Для ОДЦ не показываем цех
                 if (formData.shop && formData.group !== "ОДЦ") message += `Цех/участок: ${formData.shop}\n`;
-            } else if (formData.organization === 'Подрядная организация') {
+            } else if (formData.organization === 'Подрядная организации') {
                 if (formData.contractor) message += `Наименование подрядной организации: ${formData.contractor}\n`;
             }
             
