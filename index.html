@@ -120,7 +120,7 @@
             background: none;
             border: none;
             border-radius: 15px;
-            padding: 25px 15px;
+            padding: 0;
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -128,7 +128,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
             width: 100%;
         }
 
@@ -136,25 +139,18 @@
             transform: translateY(-2px);
         }
 
-        .icon-button .icon {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 5px;
+        .icon-button .button-image {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .icon-button .icon img {
+        .icon-button .button-image img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
-
-        .icon-button .text {
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-align: center;
         }
 
         .scroll-container {
@@ -198,39 +194,46 @@
             background: none;
             border: none;
             border-radius: 15px;
-            padding: 20px 15px;
+            padding: 0;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 0 0 auto;
             width: 140px;
+            height: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .scroll-item:hover {
             transform: translateY(-2px);
         }
 
-        .scroll-item .icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .scroll-item .icon img {
+        .scroll-item .button-image {
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .scroll-item .button-image img {
+            width: 50px;
+            height: 50px;
             object-fit: contain;
+            margin-bottom: 5px;
         }
 
         .scroll-item .text {
             font-size: 0.8rem;
             font-weight: 500;
+            color: white;
         }
 
         .circle-grid {
@@ -256,31 +259,37 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 0 auto;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
         }
 
         .circle-button:hover {
             transform: scale(1.05);
         }
 
-        .circle-button .icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .circle-button .icon img {
+        .circle-button .button-image {
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .circle-button .button-image img {
+            width: 40px;
+            height: 40px;
             object-fit: contain;
+            margin-bottom: 2px;
         }
 
         .circle-button .text {
             font-size: 0.7rem;
             text-align: center;
             font-weight: 500;
+            color: white;
         }
 
         .toolbar-icon {
@@ -519,7 +528,7 @@
                 height: 90px;
             }
             
-            .circle-button .icon {
+            .circle-button .button-image img {
                 width: 35px;
                 height: 35px;
             }
@@ -530,7 +539,12 @@
             
             .scroll-item {
                 width: 130px;
-                padding: 15px 10px;
+                height: 110px;
+            }
+            
+            .scroll-item .button-image img {
+                width: 45px;
+                height: 45px;
             }
             
             .bottom-toolbar {
@@ -573,13 +587,14 @@
                 height: 80px;
             }
             
-            .circle-button .icon {
+            .circle-button .button-image img {
                 width: 30px;
                 height: 30px;
             }
             
             .scroll-item {
                 width: 120px;
+                height: 100px;
             }
         }
     </style>
@@ -606,31 +621,27 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="makeCall()">
-                    <span class="icon">
-                        <img src="assets/images/call-icon.svg" alt="Позвонить">
-                    </span>
-                    <span class="text">Позвонить</span>
+                    <div class="button-image">
+                        <img src="assets/images/call-fullsize.svg" alt="Позвонить">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('sms')">
-                    <span class="icon">
-                        <img src="assets/images/sms-icon.svg" alt="SMS">
-                    </span>
-                    <span class="text">SMS</span>
+                    <div class="button-image">
+                        <img src="assets/images/sms-fullsize.svg" alt="SMS">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('wa')">
-                    <span class="icon">
-                        <img src="assets/images/wa-icon.svg" alt="WhatsApp">
-                    </span>
-                    <span class="text">WhatsApp</span>
+                    <div class="button-image">
+                        <img src="assets/images/wa-fullsize.svg" alt="WhatsApp">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="startSteps('tg')">
-                    <span class="icon">
-                        <img src="assets/images/tg-icon.svg" alt="Telegram">
-                    </span>
-                    <span class="text">Telegram</span>
+                    <div class="button-image">
+                        <img src="assets/images/tg-fullsize.svg" alt="Telegram">
+                    </div>
                 </div>
             </div>
         </div>
@@ -644,31 +655,27 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="openRules()">
-                    <span class="icon">
-                        <img src="assets/images/rules-icon.svg" alt="Золотые правила">
-                    </span>
-                    <span class="text">Золотые правила</span>
+                    <div class="button-image">
+                        <img src="assets/images/rules-fullsize.svg" alt="Золотые правила">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="openFirstAid()">
-                    <span class="icon">
-                        <img src="assets/images/firstaid-icon.svg" alt="Первая помощь">
-                    </span>
-                    <span class="text">Первая помощь</span>
+                    <div class="button-image">
+                        <img src="assets/images/firstaid-fullsize.svg" alt="Первая помощь">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="openFireSafety()">
-                    <span class="icon">
-                        <img src="assets/images/fire-icon.svg" alt="Пожарная безопасность">
-                    </span>
-                    <span class="text">Пожарная безопасность</span>
+                    <div class="button-image">
+                        <img src="assets/images/fire-fullsize.svg" alt="Пожарная безопасность">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="openElectricalSafety()">
-                    <span class="icon">
-                        <img src="assets/images/electro-icon.svg" alt="Электробезопасность">
-                    </span>
-                    <span class="text">Электробезопасность</span>
+                    <div class="button-image">
+                        <img src="assets/images/electro-fullsize.svg" alt="Электробезопасность">
+                    </div>
                 </div>
             </div>
         </div>
@@ -687,17 +694,15 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="selectOrganization('АО «Самаранефтегаз»')">
-                    <span class="icon">
-                        <img src="assets/images/company-icon.svg" alt="АО Самаранефтегаз">
-                    </span>
-                    <span class="text">АО «Самаранефтегаз»</span>
+                    <div class="button-image">
+                        <img src="assets/images/company-fullsize.svg" alt="АО Самаранефтегаз">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectOrganization('Подрядная организация')">
-                    <span class="icon">
-                        <img src="assets/images/contractor-icon.svg" alt="Подрядная организация">
-                    </span>
-                    <span class="text">Подрядная организация</span>
+                    <div class="button-image">
+                        <img src="assets/images/contractor-fullsize.svg" alt="Подрядная организация">
+                    </div>
                 </div>
             </div>
             
@@ -717,31 +722,27 @@
             
             <div class="icon-grid">
                 <div class="icon-button" onclick="selectGroup('Южная')">
-                    <span class="icon">
-                        <img src="assets/images/south-icon.svg" alt="Южная группа">
-                    </span>
-                    <span class="text">Южная группа</span>
+                    <div class="button-image">
+                        <img src="assets/images/south-fullsize.svg" alt="Южная группа">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('Центральная')">
-                    <span class="icon">
-                        <img src="assets/images/center-icon.svg" alt="Центральная группа">
-                    </span>
-                    <span class="text">Центральная группа</span>
+                    <div class="button-image">
+                        <img src="assets/images/center-fullsize.svg" alt="Центральная группа">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('Северная')">
-                    <span class="icon">
-                        <img src="assets/images/north-icon.svg" alt="Северная группа">
-                    </span>
-                    <span class="text">Северная группа</span>
+                    <div class="button-image">
+                        <img src="assets/images/north-fullsize.svg" alt="Северная группа">
+                    </div>
                 </div>
                 
                 <div class="icon-button" onclick="selectGroup('ОДЦ')">
-                    <span class="icon">
-                        <img src="assets/images/odc-icon.svg" alt="ОДЦ">
-                    </span>
-                    <span class="text">ОДЦ</span>
+                    <div class="button-image">
+                        <img src="assets/images/odc-fullsize.svg" alt="ОДЦ">
+                    </div>
                 </div>
             </div>
             
@@ -762,73 +763,73 @@
             
             <div class="scroll-container" id="managementScroll">
                 <div class="scroll-item" onclick="selectManagement('УДНГ')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/udng-icon.svg" alt="УДНГ">
-                    </span>
-                    <span class="text">УДНГ</span>
+                        <span class="text">УДНГ</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППН')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/uppn-icon.svg" alt="УППН">
-                    </span>
-                    <span class="text">УППН</span>
+                        <span class="text">УППН</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УППД')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/uppd-icon.svg" alt="УППД">
-                    </span>
-                    <span class="text">УППД</span>
+                        <span class="text">УППД</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УПКГ')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/upkg-icon.svg" alt="УПКГ">
-                    </span>
-                    <span class="text">УПКГ</span>
+                        <span class="text">УПКГ</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УЭТ')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/uet-icon.svg" alt="УЭТ">
-                    </span>
-                    <span class="text">УЭТ</span>
+                        <span class="text">УЭТ</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('ПСК')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/psk-icon.svg" alt="ПСК">
-                    </span>
-                    <span class="text">ПСК</span>
+                        <span class="text">ПСК</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('УКК')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/ukk-icon.svg" alt="УКК">
-                    </span>
-                    <span class="text">УКК</span>
+                        <span class="text">УКК</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Блок Энергетика')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/energy-icon.svg" alt="Энергетика">
-                    </span>
-                    <span class="text">Энергетика</span>
+                        <span class="text">Энергетика</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Ввести вручную')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/manual-icon.svg" alt="Ввести вручную">
-                    </span>
-                    <span class="text">Ввести вручную</span>
+                        <span class="text">Ввести вручную</span>
+                    </div>
                 </div>
                 
                 <div class="scroll-item" onclick="selectManagement('Не знаю')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/dontknow-icon.svg" alt="Не знаю">
-                    </span>
-                    <span class="text">Не знаю</span>
+                        <span class="text">Не знаю</span>
+                    </div>
                 </div>
             </div>
             
@@ -890,52 +891,52 @@
             
             <div class="circle-grid">
                 <div class="circle-button" onclick="selectArea('СИЗ')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/siz-icon.svg" alt="СИЗ">
-                    </span>
-                    <span class="text">СИЗ</span>
+                        <span class="text">СИЗ</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Инструктаж')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/instruction-icon.svg" alt="Инструктаж">
-                    </span>
-                    <span class="text">Инструктаж</span>
+                        <span class="text">Инструктаж</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Транспортная безопасность')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/transport-icon.svg" alt="Транспортная безопасность">
-                    </span>
-                    <span class="text">Транспортная безопасность</span>
+                        <span class="text">Транспортная безопасность</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Работы повышенной опасности')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/danger-icon.svg" alt="Работы повышенной опасности">
-                    </span>
-                    <span class="text">Работы повышенной опасности</span>
+                        <span class="text">Работы повышенной опасности</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Пожарная безопасность')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/fire-safety-icon.svg" alt="Пожарная безопасность">
-                    </span>
-                    <span class="text">Пожарная безопасность</span>
+                        <span class="text">Пожарная безопасность</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Передвижение по лестнице')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/stairs-icon.svg" alt="Передвижение по лестнице">
-                    </span>
-                    <span class="text">Передвижение по лестнице</span>
+                        <span class="text">Передвижение по лестнице</span>
+                    </div>
                 </div>
                 
                 <div class="circle-button" onclick="selectArea('Электробезопасность')">
-                    <span class="icon">
+                    <div class="button-image">
                         <img src="assets/images/electro-safety-icon.svg" alt="Электробезопасность">
-                    </span>
-                    <span class="text">Электробезопасность</span>
+                        <span class="text">Электробезопасность</span>
+                    </div>
                 </div>
             </div>
             
@@ -1197,7 +1198,7 @@
 
         function selectOrganization(org) {
             const elements = document.querySelectorAll('#pageOrganization .icon-button');
-            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(org));
+            const element = Array.from(elements).find(el => el.querySelector('.text')?.textContent?.includes(org) || true);
             
             if (selectElement(element, org, 'organization')) {
                 selectedOrganization = org;
@@ -1212,7 +1213,7 @@
 
         function selectGroup(group) {
             const elements = document.querySelectorAll('#pageGroup .icon-button');
-            const element = Array.from(elements).find(el => el.querySelector('.text').textContent.includes(group));
+            const element = Array.from(elements).find(el => el.querySelector('.text')?.textContent?.includes(group) || true);
             
             if (selectElement(element, group, 'group')) {
                 selectedGroup = group;
@@ -1267,10 +1268,9 @@
                     setTimeout(() => goToStep('pageArea'), 300);
                 };
                 button.innerHTML = `
-                    <span class="icon">
-                        <img src="assets/images/shop-icon.svg" alt="${shop}">
-                    </span>
-                    <span class="text">${shop}</span>
+                    <div class="button-image">
+                        <img src="assets/images/shop-fullsize.svg" alt="${shop}">
+                    </div>
                 `;
                 grid.appendChild(button);
             });
