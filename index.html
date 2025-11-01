@@ -169,7 +169,7 @@
 
         .scroll-container {
             display: flex;
-            gap: 4px; /* Уменьшены отступы между кнопками */
+            gap: 1px; /* МИНИМАЛЬНЫЕ ОТСТУПЫ МЕЖДУ КНОПКАМИ */
             overflow-x: auto;
             padding: 10px 20px 30px 20px;
             margin-bottom: 10px;
@@ -213,8 +213,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 0 0 auto;
-            width: 300px; /* Увеличена ширина до 300px */
-            height: 300px; /* Увеличена высота до 300px */
+            width: 250px; /* РАЗМЕР 250x250 */
+            height: 250px; /* РАЗМЕР 250x250 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -238,20 +238,20 @@
         }
 
         .scroll-item .button-image img {
-            width: 200px; /* Увеличены иконки */
-            height: 200px; /* Увеличены иконки */
+            width: 160px; /* Уменьшены иконки под новый размер */
+            height: 160px; /* Уменьшены иконки под новый размер */
             object-fit: contain;
             margin-bottom: 5px;
         }
 
         .scroll-item .text {
-            display: none; /* Убран текст под иконками */
+            display: none;
         }
 
         /* НОВЫЙ СТИЛЬ ДЛЯ СКРОЛЛА КРУГЛЫХ КНОПОК */
         .circle-scroll-container {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             overflow-x: auto;
             padding: 10px 20px 30px 20px;
             margin-bottom: 10px;
@@ -269,8 +269,8 @@
             background: none;
             border: none;
             border-radius: 50%;
-            width: 300px; /* Увеличена ширина до 300px */
-            height: 300px; /* Увеличена высота до 300px */
+            width: 300px;
+            height: 300px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -620,23 +620,23 @@
             }
             
             .scroll-item {
-                width: 300px; /* Сохраняем размер 300px на телефоне */
-                height: 300px; /* Сохраняем размер 300px на телефоне */
+                width: 250px; /* Сохраняем размер 250px на телефоне */
+                height: 250px; /* Сохраняем размер 250px на телефоне */
             }
             
             .circle-scroll-item {
-                width: 300px; /* Сохраняем размер 300px на телефоне */
-                height: 300px; /* Сохраняем размер 300px на телефоне */
+                width: 300px;
+                height: 300px;
             }
             
             .scroll-item .button-image img {
-                width: 200px; /* Сохраняем размер иконок на телефоне */
-                height: 200px; /* Сохраняем размер иконок на телефоне */
+                width: 160px;
+                height: 160px;
             }
             
             .circle-scroll-item .button-image img {
-                width: 120px; /* Сохраняем размер иконок на телефоне */
-                height: 120px; /* Сохраняем размер иконок на телефоне */
+                width: 120px;
+                height: 120px;
             }
             
             .bottom-toolbar {
@@ -685,23 +685,23 @@
             }
             
             .scroll-item {
-                width: 280px; /* Немного уменьшаем на очень маленьких экранах */
-                height: 280px; /* Немного уменьшаем на очень маленьких экранах */
+                width: 230px; /* Немного уменьшаем на очень маленьких экранах */
+                height: 230px; /* Немного уменьшаем на очень маленьких экранах */
             }
             
             .circle-scroll-item {
-                width: 280px; /* Немного уменьшаем на очень маленьких экранах */
-                height: 280px; /* Немного уменьшаем на очень маленьких экранах */
+                width: 280px;
+                height: 280px;
             }
             
             .scroll-item .button-image img {
-                width: 180px; /* Немного уменьшаем иконки на очень маленьких экранах */
-                height: 180px; /* Немного уменьшаем иконки на очень маленьких экранах */
+                width: 140px;
+                height: 140px;
             }
             
             .circle-scroll-item .button-image img {
-                width: 100px; /* Немного уменьшаем иконки на очень маленьких экранах */
-                height: 100px; /* Немного уменьшаем иконки на очень маленьких экранах */
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -1174,7 +1174,7 @@
             
             scrollContainer.addEventListener('scroll', function() {
                 const scrollPos = scrollContainer.scrollLeft;
-                const itemWidth = 300 + 4; /* Обновлен размер с учетом новых отступов */
+                const itemWidth = 250 + 1; /* Обновлен размер с учетом новых отступов */
                 const activeDot = Math.floor(scrollPos / (itemWidth * 3));
                 
                 dotsContainer.querySelectorAll('.scroll-dot').forEach((dot, index) => {
