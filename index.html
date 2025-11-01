@@ -600,19 +600,30 @@
             width: 100%;
             height: 300px;
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
+        }
+
+        .references-scroll-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 20px 30px 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .references-scroll-container::-webkit-scrollbar {
+            display: none;
         }
 
         .references-wrapper {
             display: flex;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
+            gap: 20px;
             height: 100%;
-            justify-content: center;
             align-items: center;
-            gap: 30px;
         }
 
         .reference-item {
@@ -672,6 +683,28 @@
             }
         }
 
+        /* Точки для скролла памяток */
+        .references-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .references-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #333;
+            transition: all 0.3s ease;
+        }
+
+        .references-dot.active {
+            background: #ffd200;
+            transform: scale(1.2);
+        }
+
         @media (max-width: 768px) {
             .logo {
                 max-width: 400px;
@@ -687,6 +720,10 @@
             
             .references-container {
                 height: 280px;
+            }
+            
+            .references-scroll-container {
+                padding: 10px 15px 30px 15px;
             }
             
             .reference-item {
@@ -794,6 +831,10 @@
                 height: 250px;
             }
             
+            .references-scroll-container {
+                padding: 10px 15px 30px 15px;
+            }
+            
             .reference-item {
                 flex: 0 0 160px;
                 height: 200px;
@@ -886,9 +927,15 @@
             </div>
             
             <div class="references-container">
-                <div class="references-wrapper" id="referencesWrapper">
-                    <!-- Памятки будут добавлены через JavaScript -->
+                <div class="references-scroll-container" id="referencesScroll">
+                    <div class="references-wrapper" id="referencesWrapper">
+                        <!-- Памятки будут добавлены через JavaScript -->
+                    </div>
                 </div>
+            </div>
+            
+            <div class="references-dots" id="referencesDots">
+                <!-- Точки будут добавлены через JavaScript -->
             </div>
             
             <!-- КНОПКА НАЗАД УБРАНА -->
@@ -1353,6 +1400,7 @@
                 document.getElementById('toolbar').style.display = 'flex';
                 initScrollDots();
                 initReferencesPage();
+                initReferencesScrollDots();
             }, 3000);
         });
 
@@ -1375,6 +1423,32 @@
                 `;
                 
                 wrapper.appendChild(item);
+            });
+        }
+
+        function initReferencesScrollDots() {
+            const scrollContainer = document.getElementById('referencesScroll');
+            const dotsContainer = document.getElementById('referencesDots');
+            if (!scrollContainer || !dotsContainer) return;
+            
+            const items = references.length;
+            const dotsCount = Math.ceil(items / 2); // 2 элемента видно одновременно
+            
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < dotsCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'references-dot' + (i === 0 ? ' active' : '');
+                dotsContainer.appendChild(dot);
+            }
+            
+            scrollContainer.addEventListener('scroll', function() {
+                const scrollPos = scrollContainer.scrollLeft;
+                const itemWidth = 200 + 20; // 200px + 20px gap
+                const activeDot = Math.floor(scrollPos / (itemWidth * 2));
+                
+                dotsContainer.querySelectorAll('.references-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeDot);
+                });
             });
         }
 
