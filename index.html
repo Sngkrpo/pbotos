@@ -66,6 +66,45 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Анимации для главных кнопок сообщений */
+        #pageMessages .icon-button:nth-child(1) {
+            animation: slideFromLeft 0.6s ease-out;
+        }
+        
+        #pageMessages .icon-button:nth-child(2) {
+            animation: slideFromRight 0.6s ease-out 0.1s both;
+        }
+        
+        #pageMessages .icon-button:nth-child(3) {
+            animation: slideFromLeft 0.6s ease-out 0.2s both;
+        }
+        
+        #pageMessages .icon-button:nth-child(4) {
+            animation: slideFromRight 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes slideFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes slideFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
         .welcome-content {
             flex: 1;
             display: flex;
@@ -1138,6 +1177,46 @@
             }
         };
 
+        // Маппинг изображений для цехов
+        const shopImages = {
+            "ЦДНГ-2": "assets/images/cdng2-fullsize.svg",
+            "ЦДНГ-3": "assets/images/cdng3-fullsize.svg",
+            "ЦДНГ-4": "assets/images/cdng4-fullsize.svg",
+            "ЦДНГ-5": "assets/images/cdng5-fullsize.svg",
+            "ЦДНГ-6": "assets/images/cdng6-fullsize.svg",
+            "ЦДНГ-7": "assets/images/cdng7-fullsize.svg",
+            "ЦДНГ-8": "assets/images/cdng8-fullsize.svg",
+            "ЦППН-1": "assets/images/cppn1-fullsize.svg",
+            "ЦППН-3": "assets/images/cppn3-fullsize.svg",
+            "ЦППН-4": "assets/images/cppn4-fullsize.svg",
+            "ЦППН-5": "assets/images/cppn5-fullsize.svg",
+            "ЦППН-6": "assets/images/cppn6-fullsize.svg",
+            "ИХАЛ-3": "assets/images/ihal3-fullsize.svg",
+            "ИХАЛ-4": "assets/images/ihal4-fullsize.svg",
+            "ИХАЛ-6": "assets/images/ihal6-fullsize.svg",
+            "ИХАЛ-7": "assets/images/ihal7-fullsize.svg",
+            "ИХАЛ-8": "assets/images/ihal8-fullsize.svg",
+            "ИХАЛ-9": "assets/images/ihal9-fullsize.svg",
+            "ЦЭРТ-1": "assets/images/cert1-fullsize.svg",
+            "ЦЭРТ-2": "assets/images/cert2-fullsize.svg",
+            "ЦЭРТ-3": "assets/images/cert3-fullsize.svg",
+            "ЦЛАП": "assets/images/clap-fullsize.svg",
+            "ЦППД-1": "assets/images/cppd1-fullsize.svg",
+            "ЦППД-2": "assets/images/cppd2-fullsize.svg",
+            "ЦППД-3": "assets/images/cppd3-fullsize.svg",
+            "ПСЦ-1": "assets/images/psc1-fullsize.svg",
+            "ПСЦ-2": "assets/images/psc2-fullsize.svg",
+            "Участок-1": "assets/images/uchastok1-fullsize.svg",
+            "Участок-2": "assets/images/uchastok2-fullsize.svg",
+            "Участок-3": "assets/images/uchastok3-fullsize.svg",
+            "СРЭ": "assets/images/sre-fullsize.svg",
+            "ЦЭОТ-2": "assets/images/ceot2-fullsize.svg",
+            "ЦЭОТ-3": "assets/images/ceot3-fullsize.svg",
+            "ЦЭЭ-5": "assets/images/cee5-fullsize.svg",
+            "ЦЭЭ-6": "assets/images/cee6-fullsize.svg",
+            "ОДЦ": "assets/images/odc-fullsize.svg"
+        };
+
         // Управления, которые автоматически заполняются (пропускают шаг выбора цеха)
         const autoFillManagements = {
             "Центральная": ["УППД", "ПСК", "УПКГ", "Блок Энергетика"],
@@ -1429,9 +1508,13 @@
                     selectElement(button, shop, 'shop');
                     setTimeout(() => goToStep('pageArea'), 300);
                 };
+                
+                // Используем специальное изображение для цеха или изображение по умолчанию
+                const imageSrc = shopImages[shop] || 'assets/images/shop-fullsize.svg';
+                
                 button.innerHTML = `
                     <div class="button-image">
-                        <img src="assets/images/shop-fullsize.svg" alt="${shop}">
+                        <img src="${imageSrc}" alt="${shop}">
                     </div>
                 `;
                 grid.appendChild(button);
