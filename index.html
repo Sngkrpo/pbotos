@@ -238,8 +238,8 @@
         }
 
         .scroll-item .button-image img {
-            width: 160px; /* Уменьшены иконки под новый размер */
-            height: 160px; /* Уменьшены иконки под новый размер */
+            width: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
+            height: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
             object-fit: contain;
             margin-bottom: 5px;
         }
@@ -251,7 +251,7 @@
         /* НОВЫЙ СТИЛЬ ДЛЯ СКРОЛЛА КРУГЛЫХ КНОПОК */
         .circle-scroll-container {
             display: flex;
-            gap: 8px;
+            gap: 2px; /* МИНИМАЛЬНЫЕ ОТСТУПЫ МЕЖДУ КРУГЛЫМИ КНОПКАМИ */
             overflow-x: auto;
             padding: 10px 20px 30px 20px;
             margin-bottom: 10px;
@@ -293,14 +293,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 20px; /* УМЕНЬШЕНЫ ОТСТУПЫ ВНУТРИ КНОПКИ */
         }
 
         .circle-scroll-item .button-image img {
-            width: 120px;
-            height: 120px;
+            width: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
+            height: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
             object-fit: contain;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .circle-scroll-item .text {
@@ -620,23 +620,13 @@
             }
             
             .scroll-item {
-                width: 250px; /* Сохраняем размер 250px на телефоне */
-                height: 250px; /* Сохраняем размер 250px на телефоне */
+                width: 250px;
+                height: 250px;
             }
             
             .circle-scroll-item {
                 width: 300px;
                 height: 300px;
-            }
-            
-            .scroll-item .button-image img {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .circle-scroll-item .button-image img {
-                width: 120px;
-                height: 120px;
             }
             
             .bottom-toolbar {
@@ -685,23 +675,13 @@
             }
             
             .scroll-item {
-                width: 230px; /* Немного уменьшаем на очень маленьких экранах */
-                height: 230px; /* Немного уменьшаем на очень маленьких экранах */
+                width: 230px;
+                height: 230px;
             }
             
             .circle-scroll-item {
                 width: 280px;
                 height: 280px;
-            }
-            
-            .scroll-item .button-image img {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .circle-scroll-item .button-image img {
-                width: 100px;
-                height: 100px;
             }
         }
     </style>
@@ -1174,7 +1154,7 @@
             
             scrollContainer.addEventListener('scroll', function() {
                 const scrollPos = scrollContainer.scrollLeft;
-                const itemWidth = 250 + 1; /* Обновлен размер с учетом новых отступов */
+                const itemWidth = 250 + 1;
                 const activeDot = Math.floor(scrollPos / (itemWidth * 3));
                 
                 dotsContainer.querySelectorAll('.scroll-dot').forEach((dot, index) => {
