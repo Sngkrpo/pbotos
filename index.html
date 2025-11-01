@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ПБОТОС - Сообщить о нарушении</title>
     
+    <!-- ==== ИКОНКИ ПРИЛОЖЕНИЯ ==== -->
+    <link rel="icon" type="image/x-icon" href="assets/images/app-icon.ico">
+    <link rel="apple-touch-icon" href="assets/images/app-icon.png">
+    <!-- ============================ -->
+    
     <style>
         * {
             margin: 0;
@@ -169,7 +174,7 @@
 
         .scroll-container {
             display: flex;
-            gap: 1px; /* МИНИМАЛЬНЫЕ ОТСТУПЫ МЕЖДУ КНОПКАМИ */
+            gap: 1px;
             overflow-x: auto;
             padding: 10px 20px 30px 20px;
             margin-bottom: 10px;
@@ -213,8 +218,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 0 0 auto;
-            width: 250px; /* РАЗМЕР 250x250 */
-            height: 250px; /* РАЗМЕР 250x250 */
+            width: 250px;
+            height: 250px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -238,8 +243,8 @@
         }
 
         .scroll-item .button-image img {
-            width: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
-            height: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             margin-bottom: 5px;
         }
@@ -248,10 +253,9 @@
             display: none;
         }
 
-        /* НОВЫЙ СТИЛЬ ДЛЯ СКРОЛЛА КРУГЛЫХ КНОПОК */
         .circle-scroll-container {
             display: flex;
-            gap: 2px; /* МИНИМАЛЬНЫЕ ОТСТУПЫ МЕЖДУ КРУГЛЫМИ КНОПКАМИ */
+            gap: 1px;
             overflow-x: auto;
             padding: 10px 20px 30px 20px;
             margin-bottom: 10px;
@@ -293,21 +297,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px; /* УМЕНЬШЕНЫ ОТСТУПЫ ВНУТРИ КНОПКИ */
+            padding: 20px;
         }
 
         .circle-scroll-item .button-image img {
-            width: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
-            height: 100%; /* ЗАПОЛНЯЕТ ВЕСЬ КОНТЕЙНЕР */
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            margin-bottom: 5px;
         }
 
         .circle-scroll-item .text {
-            font-size: 1rem;
-            text-align: center;
-            font-weight: 500;
-            color: white;
+            display: none;
         }
 
         .circle-grid {
@@ -476,7 +476,7 @@
 
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, #007bff, #00b3ff);
+            background: linear-gradient(90deg, #ffd200, #ffed4e);
             width: 0%;
             transition: width 0.4s ease;
         }
@@ -493,18 +493,20 @@
 
         .bottom-toolbar {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
             background: #1a1a1a;
-            border-top: 2px solid #333;
+            border: 2px solid #333;
+            border-radius: 25px;
             padding: 12px 20px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            width: 100%;
+            width: calc(100% - 20px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .toolbar-button {
@@ -517,7 +519,7 @@
             color: #888;
             cursor: pointer;
             padding: 8px 16px;
-            border-radius: 12px;
+            border-radius: 15px;
             transition: all 0.3s ease;
             flex: 1;
             max-width: 120px;
@@ -569,7 +571,7 @@
 
         @media (max-width: 480px) {
             body {
-                padding: 0 0 80px 0;
+                padding: 0 0 90px 0;
             }
 
             .welcome-content {
@@ -630,6 +632,10 @@
             }
             
             .bottom-toolbar {
+                bottom: 8px;
+                left: 8px;
+                right: 8px;
+                width: calc(100% - 16px);
                 padding: 10px 15px;
             }
             
@@ -976,54 +982,46 @@
             <div class="step-info" id="step6Info">Шаг 6 из 8</div>
             <div class="progress-bar"><div class="progress" id="progress6"></div></div>
             
-            <!-- ЗАМЕНЕН КРУГЛЫЙ ГРИД НА СКРОЛЛ КОНТЕЙНЕР -->
             <div class="circle-scroll-container" id="areaScroll">
                 <div class="circle-scroll-item" onclick="selectArea('СИЗ')">
                     <div class="button-image">
                         <img src="assets/images/siz-icon.svg" alt="СИЗ">
-                        <span class="text">СИЗ</span>
                     </div>
                 </div>
                 
                 <div class="circle-scroll-item" onclick="selectArea('Инструктаж')">
                     <div class="button-image">
                         <img src="assets/images/instruction-icon.svg" alt="Инструктаж">
-                        <span class="text">Инструктаж</span>
                     </div>
                 </div>
                 
                 <div class="circle-scroll-item" onclick="selectArea('Транспортная безопасность')">
                     <div class="button-image">
                         <img src="assets/images/transport-icon.svg" alt="Транспортная безопасность">
-                        <span class="text">Транспортная безопасность</span>
                     </div>
                 </div>
                 
                 <div class="circle-scroll-item" onclick="selectArea('Работы повышенной опасности')">
                     <div class="button-image">
                         <img src="assets/images/danger-icon.svg" alt="Работы повышенной опасности">
-                        <span class="text">Работы повышенной опасности</span>
                     </div>
                 </div>
                 
                 <div class="circle-scroll-item" onclick="selectArea('Пожарная безопасность')">
                     <div class="button-image">
                         <img src="assets/images/fire-safety-icon.svg" alt="Пожарная безопасность">
-                        <span class="text">Пожарная безопасность</span>
                     </div>
                 </div>
                 
                 <div class="circle-scroll-item" onclick="selectArea('Передвижение по лестнице')">
                     <div class="button-image">
                         <img src="assets/images/stairs-icon.svg" alt="Передвижение по лестнице">
-                        <span class="text">Передвижение по лестнице</span>
                     </div>
                 </div>
                 
                 <div class="circle-scroll-item" onclick="selectArea('Электробезопасность')">
                     <div class="button-image">
                         <img src="assets/images/electro-safety-icon.svg" alt="Электробезопасность">
-                        <span class="text">Электробезопасность</span>
                     </div>
                 </div>
             </div>
@@ -1100,15 +1098,52 @@
     </div>
 
     <script>
-        const structures = {
-            "УДНГ": ["ЦДНГ-2","ЦДНГ-3","ЦДНГ-4","ЦДНГ-5","ЦДНГ-6","ЦДНГ-7","ЦДНГ-8"],
-            "УППН": ["ЦППН-1","ЦППН-3","ЦППН-4","ЦППН-5","ЦППН-6"],
-            "УППД": ["ЦППД-1","ЦППД-2","ЦППД-3"],
-            "УПКГ": ["Участок-1","Участок-2","Участок-3"],
-            "УЭТ": ["ЦЭРТ-1","ЦЭРТ-2","ЦЭРТ-3","ЦЛАП"],
-            "ПСК": ["ПСЦ-1","ПСЦ-2"],
-            "УКК": ["ИХАЛ-1","ИХАЛ-2","ИХАЛ-3","ИХАЛ-4","ИХАЛ-5","ИХАЛ-6","ИХАЛ-7","ИХАЛ-8","ИХАЛ-9"],
-            "Блок Энергетика": ["СРЭ","ЦЭОТ-2","ЦЭОТ-3","ЦЭЭ-5","ЦЭЭ-6"]
+        // Структура данных с учетом групп
+        const structuresByGroup = {
+            "Центральная": {
+                "УДНГ": ["ЦДНГ-3", "ЦДНГ-4"],
+                "УППН": ["ЦППН-3", "ЦППН-4"],
+                "УКК": ["ИХАЛ-3", "ИХАЛ-4"],
+                "УЭТ": ["ЦЭРТ-2", "ЦЛАП"],
+                // Автоматически заполняемые управления (пропускаем шаг выбора цеха)
+                "УППД": ["ЦППД-2"],
+                "ПСК": ["ПСЦ-2"],
+                "УПКГ": ["Участок-2"],
+                "Блок Энергетика": ["СРЭ", "ЦЭОТ-2", "ЦЭОТ-3", "ЦЭЭ-5", "ЦЭЭ-6"]
+            },
+            "Южная": {
+                "УДНГ": ["ЦДНГ-5", "ЦДНГ-6", "ЦДНГ-8"],
+                "УППН": ["ЦППН-5", "ЦППН-6"],
+                "УКК": ["ИХАЛ-8", "ИХАЛ-9"],
+                "УЭТ": ["ЦЭРТ-3", "ЦЛАП"],
+                // Автоматически заполняемые управления (пропускаем шаг выбора цеха)
+                "УППД": ["ЦППД-3"],
+                "ПСК": ["ПСЦ-1"],
+                "УПКГ": ["Участок-3"],
+                "Блок Энергетика": ["СРЭ", "ЦЭОТ-2", "ЦЭОТ-3", "ЦЭЭ-5", "ЦЭЭ-6"]
+            },
+            "Северная": {
+                "УДНГ": ["ЦДНГ-2", "ЦДНГ-7"],
+                "УКК": ["ИХАЛ-6", "ИХАЛ-7"],
+                "УЭТ": ["ЦЭРТ-1", "ЦЛАП"],
+                // Автоматически заполняемые управления (пропускаем шаг выбора цеха)
+                "УППД": ["ЦППД-1"],
+                "ПСК": [], // Исключить из северной группы
+                "УПКГ": ["Участок-1"],
+                "УППН": ["ЦППН-1"],
+                "Блок Энергетика": ["СРЭ", "ЦЭОТ-2", "ЦЭОТ-3", "ЦЭЭ-5", "ЦЭЭ-6"]
+            },
+            "ОДЦ": {
+                "ОДЦ": ["ОДЦ"]
+            }
+        };
+
+        // Управления, которые автоматически заполняются (пропускают шаг выбора цеха)
+        const autoFillManagements = {
+            "Центральная": ["УППД", "ПСК", "УПКГ", "Блок Энергетика"],
+            "Южная": ["УППД", "ПСК", "УПКГ", "Блок Энергетика"],
+            "Северная": ["УППД", "ПСК", "УПКГ", "УППН", "Блок Энергетика"],
+            "ОДЦ": ["ОДЦ"]
         };
 
         let selectedType = "";
@@ -1323,15 +1358,49 @@
                     formData.shop = management;
                     goToStep('pageArea');
                 } 
-                else if (structures[management]) {
-                    showShops(structures[management]);
-                    goToStep('pageShop');
-                } 
                 else {
-                    formData.shop = "";
-                    goToStep('pageArea');
+                    // Проверяем, нужно ли автоматически заполнить цех
+                    if (isAutoFillManagement(management)) {
+                        const shops = getShopsForManagement(management);
+                        if (shops && shops.length > 0) {
+                            // Автоматически выбираем первый цех и переходим к области нарушений
+                            formData.shop = shops[0];
+                            goToStep('pageArea');
+                        } else {
+                            formData.shop = "";
+                            goToStep('pageArea');
+                        }
+                    } else {
+                        // Показываем выбор цеха
+                        const shops = getShopsForManagement(management);
+                        if (shops && shops.length > 0) {
+                            showShops(shops);
+                            goToStep('pageShop');
+                        } else {
+                            formData.shop = "";
+                            goToStep('pageArea');
+                        }
+                    }
                 }
             }
+        }
+
+        function isAutoFillManagement(management) {
+            // Проверяем, является ли управление автоматически заполняемым для выбранной группы
+            return autoFillManagements[selectedGroup] && 
+                   autoFillManagements[selectedGroup].includes(management);
+        }
+
+        function getShopsForManagement(management) {
+            // Если выбрана конкретная группа, используем соответствующую структуру
+            if (selectedGroup && structuresByGroup[selectedGroup]) {
+                const groupStructures = structuresByGroup[selectedGroup];
+                if (groupStructures[management] && groupStructures[management].length > 0) {
+                    return groupStructures[management];
+                }
+            }
+            
+            return [];
         }
 
         function handleContractorInput() {
@@ -1344,6 +1413,14 @@
             const container = document.getElementById('shopContainer');
             container.innerHTML = '<div class="icon-grid"></div>';
             const grid = container.querySelector('.icon-grid');
+            
+            if (shops.length === 0) {
+                const message = document.createElement('div');
+                message.className = 'input-group';
+                message.innerHTML = '<p style="text-align: center; color: #ccc;">Для выбранного управления в этой группе нет доступных цехов</p>';
+                container.appendChild(message);
+                return;
+            }
             
             shops.forEach(shop => {
                 const button = document.createElement('div');
