@@ -169,7 +169,7 @@
 
         .scroll-container {
             display: flex;
-            gap: 8px; /* Уменьшены отступы между иконками */
+            gap: 4px; /* Уменьшены отступы между кнопками */
             overflow-x: auto;
             padding: 10px 20px 30px 20px;
             margin-bottom: 10px;
@@ -246,6 +246,68 @@
 
         .scroll-item .text {
             display: none; /* Убран текст под иконками */
+        }
+
+        /* НОВЫЙ СТИЛЬ ДЛЯ СКРОЛЛА КРУГЛЫХ КНОПОК */
+        .circle-scroll-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 20px 30px 20px;
+            margin-bottom: 10px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            position: relative;
+            width: 100%;
+        }
+
+        .circle-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .circle-scroll-item {
+            background: none;
+            border: none;
+            border-radius: 50%;
+            width: 300px; /* Увеличена ширина до 300px */
+            height: 300px; /* Увеличена высота до 300px */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 0 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circle-scroll-item:hover {
+            transform: scale(1.05);
+        }
+
+        .circle-scroll-item .button-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .circle-scroll-item .button-image img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .circle-scroll-item .text {
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 500;
+            color: white;
         }
 
         .circle-grid {
@@ -499,6 +561,10 @@
             .scroll-container {
                 padding: 10px 15px 30px 15px;
             }
+            
+            .circle-scroll-container {
+                padding: 10px 15px 30px 15px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -549,7 +615,16 @@
                 padding: 10px 15px 30px 15px;
             }
             
+            .circle-scroll-container {
+                padding: 10px 15px 30px 15px;
+            }
+            
             .scroll-item {
+                width: 300px; /* Сохраняем размер 300px на телефоне */
+                height: 300px; /* Сохраняем размер 300px на телефоне */
+            }
+            
+            .circle-scroll-item {
                 width: 300px; /* Сохраняем размер 300px на телефоне */
                 height: 300px; /* Сохраняем размер 300px на телефоне */
             }
@@ -557,6 +632,11 @@
             .scroll-item .button-image img {
                 width: 200px; /* Сохраняем размер иконок на телефоне */
                 height: 200px; /* Сохраняем размер иконок на телефоне */
+            }
+            
+            .circle-scroll-item .button-image img {
+                width: 120px; /* Сохраняем размер иконок на телефоне */
+                height: 120px; /* Сохраняем размер иконок на телефоне */
             }
             
             .bottom-toolbar {
@@ -609,9 +689,19 @@
                 height: 280px; /* Немного уменьшаем на очень маленьких экранах */
             }
             
+            .circle-scroll-item {
+                width: 280px; /* Немного уменьшаем на очень маленьких экранах */
+                height: 280px; /* Немного уменьшаем на очень маленьких экранах */
+            }
+            
             .scroll-item .button-image img {
                 width: 180px; /* Немного уменьшаем иконки на очень маленьких экранах */
                 height: 180px; /* Немного уменьшаем иконки на очень маленьких экранах */
+            }
+            
+            .circle-scroll-item .button-image img {
+                width: 100px; /* Немного уменьшаем иконки на очень маленьких экранах */
+                height: 100px; /* Немного уменьшаем иконки на очень маленьких экранах */
             }
         }
     </style>
@@ -906,50 +996,51 @@
             <div class="step-info" id="step6Info">Шаг 6 из 8</div>
             <div class="progress-bar"><div class="progress" id="progress6"></div></div>
             
-            <div class="circle-grid">
-                <div class="circle-button" onclick="selectArea('СИЗ')">
+            <!-- ЗАМЕНЕН КРУГЛЫЙ ГРИД НА СКРОЛЛ КОНТЕЙНЕР -->
+            <div class="circle-scroll-container" id="areaScroll">
+                <div class="circle-scroll-item" onclick="selectArea('СИЗ')">
                     <div class="button-image">
                         <img src="assets/images/siz-icon.svg" alt="СИЗ">
                         <span class="text">СИЗ</span>
                     </div>
                 </div>
                 
-                <div class="circle-button" onclick="selectArea('Инструктаж')">
+                <div class="circle-scroll-item" onclick="selectArea('Инструктаж')">
                     <div class="button-image">
                         <img src="assets/images/instruction-icon.svg" alt="Инструктаж">
                         <span class="text">Инструктаж</span>
                     </div>
                 </div>
                 
-                <div class="circle-button" onclick="selectArea('Транспортная безопасность')">
+                <div class="circle-scroll-item" onclick="selectArea('Транспортная безопасность')">
                     <div class="button-image">
                         <img src="assets/images/transport-icon.svg" alt="Транспортная безопасность">
                         <span class="text">Транспортная безопасность</span>
                     </div>
                 </div>
                 
-                <div class="circle-button" onclick="selectArea('Работы повышенной опасности')">
+                <div class="circle-scroll-item" onclick="selectArea('Работы повышенной опасности')">
                     <div class="button-image">
                         <img src="assets/images/danger-icon.svg" alt="Работы повышенной опасности">
                         <span class="text">Работы повышенной опасности</span>
                     </div>
                 </div>
                 
-                <div class="circle-button" onclick="selectArea('Пожарная безопасность')">
+                <div class="circle-scroll-item" onclick="selectArea('Пожарная безопасность')">
                     <div class="button-image">
                         <img src="assets/images/fire-safety-icon.svg" alt="Пожарная безопасность">
                         <span class="text">Пожарная безопасность</span>
                     </div>
                 </div>
                 
-                <div class="circle-button" onclick="selectArea('Передвижение по лестнице')">
+                <div class="circle-scroll-item" onclick="selectArea('Передвижение по лестнице')">
                     <div class="button-image">
                         <img src="assets/images/stairs-icon.svg" alt="Передвижение по лестнице">
                         <span class="text">Передвижение по лестнице</span>
                     </div>
                 </div>
                 
-                <div class="circle-button" onclick="selectArea('Электробезопасность')">
+                <div class="circle-scroll-item" onclick="selectArea('Электробезопасность')">
                     <div class="button-image">
                         <img src="assets/images/electro-safety-icon.svg" alt="Электробезопасность">
                         <span class="text">Электробезопасность</span>
@@ -1083,7 +1174,7 @@
             
             scrollContainer.addEventListener('scroll', function() {
                 const scrollPos = scrollContainer.scrollLeft;
-                const itemWidth = 300 + 8; /* Обновлен размер с учетом новых отступов */
+                const itemWidth = 300 + 4; /* Обновлен размер с учетом новых отступов */
                 const activeDot = Math.floor(scrollPos / (itemWidth * 3));
                 
                 dotsContainer.querySelectorAll('.scroll-dot').forEach((dot, index) => {
@@ -1163,9 +1254,9 @@
         }
 
         function selectElement(element, value, dataField) {
-            const container = element.closest('.icon-grid, .scroll-container, .circle-grid');
+            const container = element.closest('.icon-grid, .scroll-container, .circle-scroll-container, .circle-grid');
             if (container) {
-                container.querySelectorAll('.icon-button, .scroll-item, .circle-button').forEach(el => {
+                container.querySelectorAll('.icon-button, .scroll-item, .circle-scroll-item, .circle-button').forEach(el => {
                     el.classList.remove('selected');
                 });
             }
@@ -1191,7 +1282,7 @@
                 description: ""
             };
             
-            document.querySelectorAll('.icon-button, .scroll-item, .circle-button').forEach(el => {
+            document.querySelectorAll('.icon-button, .scroll-item, .circle-scroll-item, .circle-button').forEach(el => {
                 el.classList.remove('selected');
             });
             document.querySelectorAll('input[type="text"], textarea').forEach(field => field.value = '');
@@ -1291,7 +1382,7 @@
         }
 
         function selectArea(area) {
-            const elements = document.querySelectorAll('#pageArea .circle-button');
+            const elements = document.querySelectorAll('#pageArea .circle-scroll-item');
             const element = Array.from(elements).find(el => el.textContent.includes(area.split(' ')[0]));
             
             if (element && selectElement(element, area, 'area')) {
