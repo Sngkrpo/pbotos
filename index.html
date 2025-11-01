@@ -650,25 +650,24 @@
         }
 
         .reference-item .button-image {
-            width: 80%;
-            height: 80%;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0;
         }
 
         .reference-item .button-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 15px;
         }
 
+        /* Наименование убрано */
         .reference-title {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            text-align: center;
-            color: #ffd200;
-            font-weight: 500;
+            display: none;
         }
 
         /* Анимация появления памяток */
@@ -838,10 +837,6 @@
             .reference-item {
                 flex: 0 0 160px;
                 height: 200px;
-            }
-            
-            .reference-title {
-                font-size: 0.8rem;
             }
         }
 
@@ -1415,11 +1410,11 @@
                 item.setAttribute('data-index', index);
                 item.onclick = () => openReference(ref.id);
                 
+                // Убрано наименование, изображение заполняет весь контейнер
                 item.innerHTML = `
                     <div class="button-image">
                         <img src="${ref.image}" alt="${ref.title}">
                     </div>
-                    <div class="reference-title">${ref.title}</div>
                 `;
                 
                 wrapper.appendChild(item);
